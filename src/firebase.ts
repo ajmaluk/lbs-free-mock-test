@@ -13,6 +13,9 @@ const firebaseConfig = {
 
 // Initialize Firebase with extra logging
 console.log("Firebase: Initializing with Project ID:", firebaseConfig.projectId);
+if (!firebaseConfig.apiKey) console.error("Firebase Error: VITE_FIREBASE_API_KEY is missing!");
+if (!firebaseConfig.projectId) console.error("Firebase Error: VITE_FIREBASE_PROJECT_ID is missing!");
+
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
