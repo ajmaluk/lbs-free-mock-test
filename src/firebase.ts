@@ -32,9 +32,9 @@ export const saveResult = async (result: any) => {
       timestamp: serverTimestamp()
     });
 
-    // 5-second timeout for extra safety
+    // 15-second timeout for extra safety (5s was too short for some connections)
     const timeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error("Firebase connection timed out. Check your internet or Firebase rules.")), 5000)
+      setTimeout(() => reject(new Error("Firebase connection timed out. This usually means either a slow internet connection or your Firebase Security Rules are blocking the write. Please ensure 'submissions' collection has public write access.")), 15000)
     );
 
     const docRef = await Promise.race([savePromise, timeoutPromise]) as any;
