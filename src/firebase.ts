@@ -50,7 +50,7 @@ export const saveResult = async (result: any) => {
   } catch (e: any) {
     const errorMsg = `FIREBASE ERROR: ${e.message}`;
     console.error(errorMsg);
-    alert(errorMsg); // This will tell us EXACTLY what is wrong
+    // alert(errorMsg); // Removed alert to keep UX smooth (non-blocking)
     return null;
   }
 };

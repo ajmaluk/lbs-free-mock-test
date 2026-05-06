@@ -92,15 +92,10 @@ export default function QuizEngine({ userData, onComplete, onExit }: Props) {
       userData, totalScore, categoryScores, answers, markedForReview, createdAt: new Date()
     };
 
-    try {
-      await saveResult(finalResult);
-      onComplete(finalResult);
-    } catch (err) {
-      console.error("Submission failed:", err);
-      onComplete(finalResult);
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Save result in background (non-blocking for better UX)
+    saveResult(finalResult);
+    onComplete(finalResult);
+    setIsSubmitting(false);
   };
 
   const handleExit = async () => {
@@ -123,15 +118,10 @@ export default function QuizEngine({ userData, onComplete, onExit }: Props) {
       userData, totalScore, categoryScores, answers, markedForReview, createdAt: new Date()
     };
 
-    try {
-      await saveResult(finalResult);
-      onExit();
-    } catch (err) {
-      console.error("Exit save failed:", err);
-      onExit();
-    } finally {
-      setIsExiting(false);
-    }
+    // Save in background
+    saveResult(finalResult);
+    onExit();
+    setIsExiting(false);
   };
 
   useEffect(() => {
