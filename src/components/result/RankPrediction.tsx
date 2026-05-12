@@ -8,19 +8,19 @@ function getRank(score: number, total: number) {
   if (pct >= 80) return {
     range: '1 – 150', chance: 'Very High', label: 'Excellent', probPct: 92,
     color: 'emerald', msg: 'Outstanding! You have a strong chance at top MCA colleges including CET Trivandrum.',
-    colleges: ['CET Trivandrum', 'NSS College Palakkad', 'Model Engineering College'],
+    colleges: ['CET Trivandrum', 'GEC thrissur', 'MEC kothamangalam', 'TKM college of engineering kollam'],
     tip: 'Maintain this level with regular mock tests and you\'re set for CET!'
   };
-  if (pct >= 65) return {
+  if (pct >= 60) return {
     range: '150 – 450', chance: 'High', label: 'Very Good', probPct: 74,
     color: 'blue', msg: 'Great performance! You\'re on track for a good MCA college.',
-    colleges: ['NSS College Palakkad', 'MES College', 'St. Gregorios'],
+    colleges: ['Other government colleges'],
     tip: 'Focus on CS and Maths to push into the top 150 rank bracket.'
   };
   if (pct >= 50) return {
     range: '450 – 900', chance: 'Moderate', label: 'Good', probPct: 52,
     color: 'amber', msg: 'Decent score! With targeted preparation you can significantly improve your rank.',
-    colleges: ['St. Gregorios', 'Sree Narayana', 'Various Govt. Colleges'],
+    colleges: ['Decent Self financing MCA colleges'],
     tip: 'Join our crash course to plug the gaps and improve by 15–20% in 4 weeks.'
   };
   if (pct >= 35) return {

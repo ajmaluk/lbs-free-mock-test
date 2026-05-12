@@ -3,7 +3,7 @@ import type { TestResult, Question, Category } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   AlertCircle, RefreshCw, ArrowRight, Play, Pause,
-  Check, X, Minus, Target, Award, Clock, TrendingUp,
+  Check, X, Minus, Clock, TrendingUp,
   MessageCircle, CheckCircle2
 } from 'lucide-react';
 import CoursePromoBanner from './result/CoursePromoBanner';
