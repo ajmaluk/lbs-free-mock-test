@@ -1,93 +1,124 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { TestResult, Question, Category } from '../types';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
-  TrendingUp, AlertCircle, RefreshCw, ArrowRight, Play, Pause,
-  Check, X, Minus, Sparkles, Clock, Target, Award
+  AlertCircle, RefreshCw, ArrowRight, Play, Pause,
+  Check, X, Minus, Target, Award, Clock, TrendingUp,
+  MessageCircle, CheckCircle2
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import CoursePromoBanner from './result/CoursePromoBanner';
+import RankPrediction from './result/RankPrediction';
+import CourseDetails from './result/CourseDetails';
 
-interface Props {
-  result: TestResult;
-  questions: Question[];
-  onReset: () => void;
-}
+interface Props { result: TestResult; questions: Question[]; onReset: () => void; }
 
+/* ─── Video Card ─────────────────────────────────────── */
 const VIDEOS = [
-  { id: 1, title: 'CS Fundamentals: Memory Management', description: 'Deep dive into how systems handle memory allocation and pointers.', src: '/videos/amarjith.mp4', poster: 'https://images.unsplash.com/photo-1509228463558-ce2ecd3e401b?auto=format&fit=crop&q=80&w=600' },
-  { id: 2, title: 'English Grammar & Rhetoric', description: 'Eliminate common grammatical errors and improve your verbal score instantly.', src: '/videos/akshay.mp4', poster: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600' },
-  { id: 3, title: 'Mathematics: Coordinate Geometry', description: 'Strengthen your understanding of coordinate geometry with comprehensive guidance.', src: '/videos/jumna.mp4', poster: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=600' },
-  { id: 4, title: 'General Knowledge: Current Affairs', description: 'Everything you need to know about current affairs for this year.', src: '/videos/abhinav.mp4', poster: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=600' },
-  { id: 5, title: 'Quantitative Aptitude: Percentages', description: 'Master percentages and their applications in real exam scenarios.', src: '/videos/sourav.mp4', poster: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=600' },
+  { id: 1, title: 'CS Fundamentals: Memory Management', src: '/videos/amarjith.mp4', poster: 'https://images.unsplash.com/photo-1509228463558-ce2ecd3e401b?auto=format&fit=crop&q=80&w=600' },
+  { id: 2, title: 'English Grammar & Rhetoric', src: '/videos/akshay.mp4', poster: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600' },
+  { id: 3, title: 'Mathematics: Coordinate Geometry', src: '/videos/jumna.mp4', poster: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=600' },
+  { id: 4, title: 'GK: Current Affairs', src: '/videos/abhinav.mp4', poster: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=600' },
+  { id: 5, title: 'Aptitude: Percentages', src: '/videos/sourav.mp4', poster: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=600' },
 ];
 
-function VideoCard({ video, activeVideoId, setActiveVideoId }: {
-  video: typeof VIDEOS[0];
-  activeVideoId: number | null;
-  setActiveVideoId: (id: number | null) => void;
-}) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+function VideoCard({ video, activeId, setActiveId }: { video: typeof VIDEOS[0]; activeId: number | null; setActiveId: (id: number | null) => void }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const boxRef = useRef<HTMLDivElement>(null);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
-    const isMobile = window.innerWidth < 1024;
-    if (!isMobile) return;
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) setActiveVideoId(video.id);
-        else if (activeVideoId === video.id) setActiveVideoId(null);
-      });
+    if (window.innerWidth >= 1024) return;
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) setActiveId(video.id);
+      else if (activeId === video.id) setActiveId(null);
     }, { threshold: 0.6 });
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, [video.id, setActiveVideoId, activeVideoId]);
+    if (boxRef.current) obs.observe(boxRef.current);
+    return () => obs.disconnect();
+  }, [video.id, activeId, setActiveId]);
 
   useEffect(() => {
-    if (!videoRef.current) return;
-    const shouldPlay = activeVideoId === video.id;
-    if (shouldPlay) {
-      videoRef.current.muted = false;
-      videoRef.current.volume = 1;
-      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
-    } else {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    }
-  }, [activeVideoId, video.id]);
+    if (!ref.current) return;
+    if (activeId === video.id) { ref.current.play().then(() => setPlaying(true)).catch(() => {}); }
+    else { ref.current.pause(); setPlaying(false); }
+  }, [activeId, video.id]);
 
-  const toggle = () => isPlaying ? setActiveVideoId(null) : setActiveVideoId(video.id);
+  const toggle = () => playing ? setActiveId(null) : setActiveId(video.id);
 
   return (
-    <div ref={containerRef} className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all flex flex-col">
-      <div className="relative aspect-video bg-slate-100 cursor-pointer" onClick={toggle}>
-        <video ref={videoRef} src={video.src} poster={video.poster} loop playsInline className="w-full h-full object-cover" />
-        <div className={`absolute inset-0 bg-black/20 flex items-center justify-center transition-opacity ${isPlaying ? 'opacity-0' : 'opacity-100'}`}>
-          <div className="w-12 h-12 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-lg">
-            {isPlaying ? <Pause className="text-slate-900 fill-slate-900 w-5 h-5" /> : <Play className="text-slate-900 fill-slate-900 w-5 h-5 ml-0.5" />}
+    <div ref={boxRef} className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-all">
+      <div className="relative aspect-video bg-slate-900 cursor-pointer" onClick={toggle}>
+        <video ref={ref} src={video.src} poster={video.poster} loop playsInline className="w-full h-full object-cover opacity-90" />
+        <div className={`absolute inset-0 bg-black/30 flex items-center justify-center transition-opacity ${playing ? 'opacity-0' : 'opacity-100'}`}>
+          <div className="w-11 h-11 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
+            {playing ? <Pause className="w-4 h-4 fill-slate-900" /> : <Play className="w-4 h-4 fill-slate-900 ml-0.5" />}
           </div>
         </div>
       </div>
-      <div className="p-5 flex flex-col flex-1">
-        <h4 className="text-base font-black text-slate-900 mb-1.5 leading-tight">{video.title}</h4>
-        <p className="text-slate-500 text-sm font-medium leading-relaxed mb-4 flex-1 line-clamp-2">{video.description}</p>
+      <div className="p-4 flex items-center justify-between gap-3">
+        <p className="text-sm font-bold text-slate-800 leading-tight flex-1">{video.title}</p>
         <a href="https://lbscourse.cetmca.in/" target="_blank" rel="noopener noreferrer"
-          className="w-full py-2.5 bg-slate-50 text-slate-600 rounded-xl font-bold text-sm border border-slate-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all flex items-center justify-center gap-2 group">
-          Join Now <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          className="shrink-0 px-3 py-1.5 bg-blue-600 text-white rounded-lg text-xs font-black hover:bg-blue-700 transition-all">
+          Join
         </a>
       </div>
     </div>
   );
 }
 
-// Format seconds to mm:ss
-function formatTime(sec: number) {
-  const m = Math.floor(sec / 60);
-  const s = sec % 60;
-  return `${m}m ${s}s`;
+/* ─── Exit Confirm Modal ─────────────────────────────── */
+function ExitModal({ onConfirm, onCancel }: { onConfirm: () => void; onCancel: () => void }) {
+  return (
+    <div className="fixed inset-0 z-[300] flex items-center justify-center p-4">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+        className="absolute inset-0 bg-slate-900/70 backdrop-blur-sm" onClick={onCancel} />
+      <motion.div initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        className="relative z-10 bg-white rounded-3xl p-7 max-w-sm w-full shadow-2xl border border-slate-100">
+        <div className="text-center">
+          <div className="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <AlertCircle className="w-7 h-7 text-amber-500" />
+          </div>
+          <h3 className="text-lg font-black text-slate-900 mb-2">Wait! Don't leave yet</h3>
+          <p className="text-slate-500 text-sm font-medium mb-5 leading-relaxed">
+            You haven't checked our <strong className="text-blue-600">CET MCA 2027 Crash Course</strong>. Improve your rank with just ₹350!
+          </p>
+          <div className="flex flex-col gap-2">
+            <a href="https://lbscourse.cetmca.in/" target="_blank" rel="noopener noreferrer"
+              className="w-full py-3 bg-blue-600 text-white rounded-2xl font-black text-sm hover:bg-blue-700 transition-all flex items-center justify-center gap-2">
+              View Crash Course <ArrowRight className="w-4 h-4" />
+            </a>
+            <button onClick={onConfirm}
+              className="w-full py-3 bg-slate-100 text-slate-500 rounded-2xl font-black text-sm hover:bg-slate-200 transition-all">
+              No thanks, retake test
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
 }
 
+/* ─── Animated Counter ───────────────────────────────── */
+function AnimCounter({ to, duration = 1.5 }: { to: number; duration?: number }) {
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    const start = Date.now();
+    const tick = () => {
+      const progress = Math.min((Date.now() - start) / (duration * 1000), 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      setVal(Math.round(ease * to));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    const af = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(af);
+  }, [to, duration]);
+  return <>{val}</>;
+}
+
+/* ─── Main Result Page ───────────────────────────────── */
 export default function ResultPage({ result, questions, onReset }: Props) {
   const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
+  const [showExitModal, setShowExitModal] = useState(false);
 
   if (!result?.categoryScores || !result?.userData) {
     return (
@@ -95,10 +126,8 @@ export default function ResultPage({ result, questions, onReset }: Props) {
         <div className="text-center p-10 bg-white rounded-3xl shadow-xl max-w-sm w-full border border-slate-100">
           <AlertCircle className="text-red-500 w-14 h-14 mx-auto mb-5" />
           <h2 className="text-2xl font-black text-slate-800 mb-2">Something went wrong</h2>
-          <p className="text-slate-500 mb-8 font-medium">We couldn't process your results.</p>
-          <button onClick={() => window.location.reload()} className="w-full py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20">
-            Reload
-          </button>
+          <p className="text-slate-500 mb-7 font-medium">We couldn't load your results.</p>
+          <button onClick={() => window.location.reload()} className="w-full py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 transition-all">Reload</button>
         </div>
       </div>
     );
@@ -106,189 +135,205 @@ export default function ResultPage({ result, questions, onReset }: Props) {
 
   const total = result.totalQuestions || questions.length || 120;
   const accuracy = Math.round((result.totalScore / total) * 100);
+  const correct = result.totalScore;
+  const wrong = Object.keys(result.answers).length - correct;
+  const skipped = total - Object.keys(result.answers).length;
+  const timeTaken = result.timeTaken ?? 0;
 
   const scores = Object.entries(result.categoryScores) as [Category, number][];
   const weakCategory = scores.reduce((a, b) => {
-    const totA = result.categoryTotals?.[a[0]] ?? 1;
-    const totB = result.categoryTotals?.[b[0]] ?? 1;
-    return (a[1] / totA) < (b[1] / totB) ? a : b;
+    const tA = result.categoryTotals?.[a[0]] ?? 1;
+    const tB = result.categoryTotals?.[b[0]] ?? 1;
+    return (a[1] / tA) < (b[1] / tB) ? a : b;
   })[0];
 
-  const performanceMsg = accuracy >= 80
-    ? "Outstanding! Your grasp of the concepts is exceptional. Keep it up!"
-    : accuracy >= 60
-    ? "Solid performance! A bit more focus on weak areas and you'll excel."
-    : "Good start! Focus on fundamentals in lower-scoring categories to bridge the gap.";
+  const perfLevel = accuracy >= 80 ? { label: 'Excellent', color: 'emerald' }
+    : accuracy >= 65 ? { label: 'Very Good', color: 'blue' }
+    : accuracy >= 50 ? { label: 'Good', color: 'amber' }
+    : accuracy >= 35 ? { label: 'Average', color: 'orange' }
+    : { label: 'Needs Work', color: 'red' };
 
-  const answeredCount = Object.keys(result.answers).length;
-  const skippedCount = total - answeredCount;
+  const handleRetake = () => setShowExitModal(true);
 
   return (
-    <div className="min-h-screen bg-slate-50 font-['Inter']">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+    <div className="min-h-screen bg-slate-50 pb-28 font-['Inter']">
 
-        {/* 1. Result Summary Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-3xl border border-slate-200 shadow-xl p-6 sm:p-8 md:p-12 flex flex-col lg:flex-row gap-8 md:gap-10 items-start lg:items-center relative overflow-hidden mb-6"
-        >
-          <div className="flex-1">
-            <div className="bg-blue-50 text-blue-600 px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-widest inline-block mb-4 border border-blue-100">
-              Exam Summary
-            </div>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 mb-3 tracking-tight">
-              Results for <span className="text-blue-600">{result.userData.name}</span>
-            </h1>
-            <p className="text-slate-500 font-medium leading-relaxed max-w-lg text-sm md:text-base">{performanceMsg}</p>
-          </div>
+      {/* Exit Modal */}
+      <AnimatePresence>
+        {showExitModal && <ExitModal onConfirm={onReset} onCancel={() => setShowExitModal(false)} />}
+      </AnimatePresence>
 
-          {/* Score Stats */}
-          <div className="w-full lg:w-auto grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-3">
-            <div className="bg-blue-50 p-4 md:p-6 rounded-2xl border border-blue-100 text-center">
-              <Target className="w-5 h-5 text-blue-500 mx-auto mb-1.5" />
-              <p className="text-2xl md:text-3xl font-black text-blue-600 tracking-tighter">{result.totalScore}</p>
-              <p className="text-[10px] font-black text-blue-400 uppercase tracking-widest">Score</p>
-            </div>
-            <div className="bg-emerald-50 p-4 md:p-6 rounded-2xl border border-emerald-100 text-center">
-              <Award className="w-5 h-5 text-emerald-500 mx-auto mb-1.5" />
-              <p className="text-2xl md:text-3xl font-black text-emerald-500 tracking-tighter">{accuracy}%</p>
-              <p className="text-[10px] font-black text-emerald-400 uppercase tracking-widest">Accuracy</p>
-            </div>
-            <div className="bg-slate-50 p-4 md:p-6 rounded-2xl border border-slate-200 text-center">
-              <Minus className="w-5 h-5 text-slate-400 mx-auto mb-1.5" />
-              <p className="text-2xl md:text-3xl font-black text-slate-600 tracking-tighter">{skippedCount}</p>
-              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Skipped</p>
-            </div>
-            <div className="bg-amber-50 p-4 md:p-6 rounded-2xl border border-amber-100 text-center">
-              <Clock className="w-5 h-5 text-amber-500 mx-auto mb-1.5" />
-              <p className="text-lg md:text-2xl font-black text-amber-600 tracking-tighter">{formatTime(result.timeTaken ?? 0)}</p>
-              <p className="text-[10px] font-black text-amber-400 uppercase tracking-widest">Time Taken</p>
-            </div>
-          </div>
-        </motion.div>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 md:py-8">
 
-        {/* 2. Category Breakdown */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-6">
-          {scores.map(([cat, score]) => {
-            const max = result.categoryTotals?.[cat] ?? 1;
-            const pct = Math.round((score / max) * 100);
-            return (
-              <div key={cat} className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">{cat}</p>
-                <p className="text-xl font-black text-slate-900 mb-2">{score}<span className="text-slate-300 font-bold text-sm">/{max}</span></p>
-                <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
-                  <div
-                    className={`h-full rounded-full transition-all ${pct >= 70 ? 'bg-emerald-500' : pct >= 40 ? 'bg-amber-400' : 'bg-red-400'}`}
-                    style={{ width: `${pct}%` }}
-                  />
-                </div>
-                <p className="text-[10px] font-black text-slate-400 mt-1">{pct}%</p>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* 3. Performance Insight */}
-        <div className="bg-white p-5 sm:p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-5 mb-6">
-          <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center border border-amber-100 shrink-0">
-            <TrendingUp className="text-amber-500 w-6 h-6" />
-          </div>
+        {/* ① Header */}
+        <div className="flex items-center justify-between mb-5">
           <div>
-            <h3 className="text-base md:text-lg font-black text-slate-900 mb-1">Performance Insight</h3>
-            <p className="text-slate-600 text-sm md:text-base font-medium">
-              Your <span className="text-blue-600 font-bold">{weakCategory}</span> score is your weakest area.
-              Improving it can significantly boost your overall rank.
-            </p>
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-200 rounded-full mb-2">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+              <span className="text-xs font-black text-emerald-600 uppercase tracking-wider">Test Completed</span>
+            </div>
+            <h1 className="text-xl sm:text-2xl font-black text-slate-900">
+              Results for <span className="text-blue-600">{result.userData.name}</span><span> </span>
+              <span className='text-red-500 font-'>,Scroll Down To View Your Score</span>
+            </h1>
           </div>
         </div>
 
-        {/* 4. Course Promo */}
-        <div className="mb-8 bg-slate-900 rounded-3xl p-6 sm:p-8 md:p-10 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
-          <div className="relative z-10 mb-6 text-center">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-blue-600/20 rounded-full mb-4 border border-blue-600/30">
-              <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-              <span className="text-[11px] font-black uppercase tracking-wider text-blue-400">LBS Foundation Excellence</span>
+        {/* ② Course Promo Banner — BEFORE result card */}
+        <CoursePromoBanner />
+
+        {/* ③ Result Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+          className="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden mb-6"
+        >
+          {/* Score hero */}
+          <div className="p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-start sm:items-center border-b border-slate-100">
+            {/* Big score */}
+            <div className="relative flex-shrink-0">
+              <svg className="w-32 h-32" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="50" fill="none" stroke="#f1f5f9" strokeWidth="10" />
+                <motion.circle
+                  cx="60" cy="60" r="50" fill="none"
+                  stroke={accuracy >= 65 ? '#10b981' : accuracy >= 45 ? '#f59e0b' : '#ef4444'}
+                  strokeWidth="10" strokeLinecap="round"
+                  strokeDasharray={`${2 * Math.PI * 50}`}
+                  strokeDashoffset={`${2 * Math.PI * 50 * (1 - accuracy / 100)}`}
+                  transform="rotate(-90 60 60)"
+                  initial={{ strokeDashoffset: `${2 * Math.PI * 50}` }}
+                  animate={{ strokeDashoffset: `${2 * Math.PI * 50 * (1 - accuracy / 100)}` }}
+                  transition={{ duration: 1.4, ease: 'easeOut', delay: 0.3 }}
+                />
+                <text x="60" y="55" textAnchor="middle" className="font-black" fontSize="22" fontWeight="900" fill="#0f172a">
+                  <AnimCounter to={result.totalScore} />
+                </text>
+                <text x="60" y="72" textAnchor="middle" fontSize="11" fill="#94a3b8">/{total}</text>
+              </svg>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white mb-3 tracking-tight">Improve Your Weak Areas</h2>
-            <p className="text-slate-400 font-medium text-sm sm:text-base max-w-2xl mx-auto">
-              Students of <span className="text-white font-bold">Computer Applications at CET</span> present an LBS MCA Crash Course — designed to help you prepare effectively for just{' '}
-              <span className="text-emerald-400 font-black">₹350</span>.
-            </p>
+
+            <div className="flex-1">
+              <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border mb-3 ${
+                perfLevel.color === 'emerald' ? 'bg-emerald-50 border-emerald-200 text-emerald-700' :
+                perfLevel.color === 'blue'    ? 'bg-blue-50 border-blue-200 text-blue-700' :
+                perfLevel.color === 'amber'   ? 'bg-amber-50 border-amber-200 text-amber-700' :
+                'bg-red-50 border-red-200 text-red-700'
+              }`}>
+                <span className="text-xs font-black uppercase tracking-widest">{perfLevel.label}</span>
+              </div>
+              <p className="text-2xl font-black text-slate-900 mb-1">{accuracy}% Accuracy</p>
+              <p className="text-slate-500 text-sm font-medium">
+                {accuracy >= 65 ? "Great job! You're well-prepared for LBS MCA." :
+                 accuracy >= 45 ? "Keep going! Focused prep will boost your score significantly." :
+                 "Don't worry — with the right mentorship, improvement is very achievable!"}
+              </p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {VIDEOS.map(video => (
-              <VideoCard key={video.id} video={video} activeVideoId={activeVideoId} setActiveVideoId={setActiveVideoId} />
+          {/* Stats row */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-slate-100">
+            {[
+              { icon: Check, label: 'Correct', value: correct, color: 'text-emerald-600', bg: 'bg-emerald-50' },
+              { icon: X,     label: 'Wrong',   value: wrong,   color: 'text-red-500',     bg: 'bg-red-50' },
+              { icon: Minus, label: 'Skipped', value: skipped, color: 'text-slate-500',   bg: 'bg-slate-50' },
+              { icon: Clock, label: 'Time',    value: `${Math.floor(timeTaken/60)}m`, color: 'text-amber-600', bg: 'bg-amber-50' },
+            ].map(({ icon: Icon, label, value, color, bg }) => (
+              <div key={label} className={`${bg} p-4 text-center`}>
+                <Icon className={`w-4 h-4 ${color} mx-auto mb-1`} />
+                <p className={`text-xl font-black ${color}`}>{value}</p>
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{label}</p>
+              </div>
             ))}
           </div>
 
-          <div className="mt-6 text-center">
+          {/* Category breakdown */}
+          <div className="p-5 sm:p-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {scores.map(([cat, score]) => {
+              const max = result.categoryTotals?.[cat] ?? 1;
+              const pct = Math.round((score / max) * 100);
+              const isWeak = cat === weakCategory;
+              return (
+                <div key={cat} className={`p-3.5 rounded-2xl border ${isWeak ? 'border-red-200 bg-red-50' : 'border-slate-100 bg-slate-50'}`}>
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">
+                    {cat} {isWeak && <span className="text-red-500">⚠</span>}
+                  </p>
+                  <p className="text-lg font-black text-slate-900">{score}<span className="text-slate-300 text-xs font-bold">/{max}</span></p>
+                  <div className="mt-2 w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                    <motion.div
+                      className={`h-full rounded-full ${pct >= 70 ? 'bg-emerald-500' : pct >= 40 ? 'bg-amber-400' : 'bg-red-400'}`}
+                      initial={{ width: 0 }}
+                      animate={{ width: `${pct}%` }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                    />
+                  </div>
+                  <p className="text-[10px] font-bold text-slate-400 mt-1">{pct}%</p>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Weak area nudge */}
+          <div className="mx-5 sm:mx-6 mb-5 flex items-center gap-3 p-4 bg-blue-50 rounded-2xl border border-blue-200">
+            <TrendingUp className="w-5 h-5 text-blue-500 shrink-0" />
+            <p className="text-sm text-blue-800 font-semibold flex-1">
+              Your weakest area is <strong>{weakCategory}</strong>. Our crash course covers it in depth.
+            </p>
             <a href="https://lbscourse.cetmca.in/" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-emerald-500 text-white rounded-2xl font-black text-base shadow-2xl shadow-emerald-500/30 hover:bg-emerald-600 transition-all hover:-translate-y-0.5 active:translate-y-0">
-              JOIN NOW — ONLY ₹350 <ArrowRight className="w-5 h-5" />
+              className="shrink-0 px-3 py-1.5 bg-blue-600 text-white rounded-xl text-xs font-black hover:bg-blue-700 transition-all">
+              Fix it
             </a>
+          </div>
+        </motion.div>
+
+        {/* ④ Rank Prediction */}
+        <RankPrediction score={result.totalScore} total={total} />
+
+        {/* ⑤ Course Details */}
+        <CourseDetails />
+
+        {/* ⑥ Preview Videos */}
+        <div className="mb-6">
+          <h3 className="text-lg font-black text-slate-800 mb-3">📹 Free Lesson Previews</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {VIDEOS.map(v => <VideoCard key={v.id} video={v} activeId={activeVideoId} setActiveId={setActiveVideoId} />)}
           </div>
         </div>
 
-        {/* 5. Detailed Analysis */}
-        <div className="mb-20">
-          <div className="flex items-center gap-4 mb-6">
-            <h2 className="text-lg md:text-2xl font-black text-slate-900 uppercase tracking-wider shrink-0">Detailed Analysis</h2>
+        {/* ⑦ Detailed Analysis */}
+        <div className="mb-6">
+          <div className="flex items-center gap-3 mb-5">
+            <h2 className="text-lg md:text-xl font-black text-slate-900 uppercase tracking-wider shrink-0">Detailed Analysis</h2>
             <div className="h-px bg-slate-200 flex-1" />
           </div>
-
-          <div className="space-y-4">
+          <div className="space-y-3">
             {questions.map((q, idx) => {
-              const userAnswer = result.answers[q.id];
-              const isCorrect = userAnswer === q.correctAnswer;
-              const isSkipped = userAnswer === undefined;
-
+              const ua = result.answers[q.id];
+              const isCorrect = ua === q.correctAnswer;
+              const isSkipped = ua === undefined;
               return (
-                <div key={q.id} className="bg-white rounded-2xl border border-slate-200 p-5 md:p-6 shadow-sm">
-                  <div className="flex items-start gap-3.5 mb-4">
-                    <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-xs font-black ${
-                      isCorrect ? 'bg-emerald-100 text-emerald-600' :
-                      isSkipped ? 'bg-slate-100 text-slate-500' :
-                                  'bg-red-100 text-red-600'
-                    }`}>
+                <div key={q.id} className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-sm">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-xs font-black ${isCorrect ? 'bg-emerald-100 text-emerald-600' : isSkipped ? 'bg-slate-100 text-slate-500' : 'bg-red-100 text-red-600'}`}>
                       {idx + 1}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                      <div className="flex flex-wrap items-center gap-2 mb-1">
                         <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{q.category}</span>
-                        {isCorrect && <span className="flex items-center gap-1 text-[10px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100"><Check className="w-3 h-3" /> CORRECT</span>}
-                        {!isCorrect && !isSkipped && <span className="flex items-center gap-1 text-[10px] font-black text-red-600 bg-red-50 px-2 py-0.5 rounded-full border border-red-100"><X className="w-3 h-3" /> INCORRECT</span>}
-                        {isSkipped && <span className="flex items-center gap-1 text-[10px] font-black text-slate-500 bg-slate-50 px-2 py-0.5 rounded-full border border-slate-200"><Minus className="w-3 h-3" /> SKIPPED</span>}
+                        {isCorrect && <span className="flex items-center gap-1 text-[10px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full"><Check className="w-3 h-3" />CORRECT</span>}
+                        {!isCorrect && !isSkipped && <span className="flex items-center gap-1 text-[10px] font-black text-red-600 bg-red-50 px-2 py-0.5 rounded-full"><X className="w-3 h-3" />INCORRECT</span>}
+                        {isSkipped && <span className="flex items-center gap-1 text-[10px] font-black text-slate-500 bg-slate-50 px-2 py-0.5 rounded-full"><Minus className="w-3 h-3" />SKIPPED</span>}
                       </div>
-                      <h4 className="text-sm md:text-base font-bold text-slate-800 leading-snug">{q.question}</h4>
+                      <h4 className="text-sm font-bold text-slate-800 leading-snug">{q.question}</h4>
                     </div>
                   </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pl-10 md:pl-11">
-                    {q.options.map((option, optIdx) => {
-                      const isCorrectOpt = optIdx === q.correctAnswer;
-                      const isSelectedOpt = optIdx === userAnswer;
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pl-10">
+                    {q.options.map((opt, oi) => {
+                      const isC = oi === q.correctAnswer, isS = oi === ua;
                       return (
-                        <div
-                          key={optIdx}
-                          className={`p-3 rounded-xl border text-sm font-semibold ${
-                            isCorrectOpt   ? 'bg-emerald-50 border-emerald-200 text-emerald-900' :
-                            isSelectedOpt  ? 'bg-red-50 border-red-200 text-red-900' :
-                                             'bg-slate-50 border-slate-100 text-slate-500'
-                          }`}
-                        >
-                          <div className="flex items-center gap-2.5">
-                            <div className={`w-5 h-5 rounded flex items-center justify-center text-[10px] font-black border shrink-0 ${
-                              isCorrectOpt  ? 'bg-emerald-500 border-emerald-500 text-white' :
-                              isSelectedOpt ? 'bg-red-500 border-red-500 text-white' :
-                                              'bg-white border-slate-200 text-slate-400'
-                            }`}>
-                              {String.fromCharCode(65 + optIdx)}
-                            </div>
-                            <span className="leading-snug">{option}</span>
+                        <div key={oi} className={`p-3 rounded-xl border text-sm font-semibold flex items-center gap-2.5 ${isC ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : isS ? 'bg-red-50 border-red-200 text-red-900' : 'bg-slate-50 border-slate-100 text-slate-500'}`}>
+                          <div className={`w-5 h-5 rounded flex items-center justify-center text-[10px] font-black border shrink-0 ${isC ? 'bg-emerald-500 border-emerald-500 text-white' : isS ? 'bg-red-500 border-red-500 text-white' : 'bg-white border-slate-200 text-slate-400'}`}>
+                            {String.fromCharCode(65 + oi)}
                           </div>
+                          <span className="leading-snug">{opt}</span>
                         </div>
                       );
                     })}
@@ -300,20 +345,24 @@ export default function ResultPage({ result, questions, onReset }: Props) {
         </div>
       </div>
 
-      {/* Sticky Bottom Actions */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t border-slate-200 shadow-2xl z-50 px-4 py-3">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-center gap-3">
-          <button
-            onClick={onReset}
-            className="flex items-center justify-center gap-2 px-6 py-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-600 font-black text-sm hover:bg-slate-50 transition-all"
-          >
-            <RefreshCw size={16} /> RETAKE TEST
+      {/* Sticky Bottom CTA */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-2xl">
+        {/* Mini urgency strip */}
+        <div className="bg-red-500 py-1.5 text-center">
+          <p className="text-white text-xs font-black tracking-wide">🔥 Limited Seats — CET MCA 2027 Crash Course — Only ₹350!</p>
+        </div>
+        <div className="max-w-5xl mx-auto px-4 py-2.5 flex flex-wrap justify-center gap-2.5">
+          <button onClick={handleRetake} className="flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 border-slate-200 bg-white text-slate-600 font-black text-sm hover:bg-slate-50 transition-all">
+            <RefreshCw className="w-4 h-4" /> Retake
           </button>
-          <a
-            href="https://lbscourse.cetmca.in/" target="_blank" rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-8 py-3 bg-emerald-500 text-white rounded-2xl font-black text-sm shadow-lg shadow-emerald-500/30 hover:bg-emerald-600 transition-all"
-          >
-            GET COURSE ACCESS <ArrowRight className="w-4 h-4" />
+          <a href="https://wa.me/919400834007" target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 text-white font-black text-sm hover:bg-emerald-600 transition-all shadow-md shadow-emerald-500/20">
+            <MessageCircle className="w-4 h-4" /> WhatsApp
+          </a>
+          <a href="https://lbscourse.cetmca.in/" target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-white font-black text-sm shadow-lg hover:-translate-y-0.5 transition-all"
+            style={{ background: 'linear-gradient(135deg, #2563eb, #7c3aed)' }}>
+            Enroll — ₹350 <ArrowRight className="w-4 h-4" />
           </a>
         </div>
       </div>

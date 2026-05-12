@@ -77,42 +77,41 @@ export default function LandingPage({ onStart, totalQuestions }: Props) {
               <span className="text-xs font-black text-blue-600 uppercase tracking-widest">Free Mock Test 2026</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 leading-[1.1] tracking-tighter mb-5">
-              Test your knowledge with{' '}
-              <span className="text-blue-600">LBS MCA</span>{' '}
-              Mock Test
+            <h1 className="text-[1.75rem] sm:text-4xl lg:text-5xl font-black text-slate-900 leading-[1.15] tracking-tighter mb-5">
+              Test your knowledge with
+              <br />
+              <span className="text-blue-600 whitespace-nowrap">LBS MCA</span>{' '}Mock Test
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-500 leading-relaxed max-w-xl mx-auto lg:mx-0 mb-7 font-medium">
+            <p className="text-sm sm:text-base text-slate-500 leading-relaxed max-w-xl mx-auto lg:mx-0 mb-7 font-medium">
               Crafted by{' '}
-              <span className="text-red-600 font-bold">students of Computer Applications</span>{' '}
-              at{' '}
-              <span className="text-red-600 font-bold">College of Engineering Trivandrum (CET)</span>.
-              Evaluate your performance with instant results, detailed analytics, and category-wise scoring.
+              <span className="text-red-600 font-bold">students of Computer Applications</span>{' '}at{' '}
+              <span className="text-red-600 font-bold">CET Trivandrum</span>.
+              {' '}Get instant results, category-wise scoring, and detailed analytics.
             </p>
 
-            {/* Stats Row */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+            {/* Stats Row — always 3-column */}
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
               {stats.map(({ icon: Icon, label, value }) => (
-                <div key={label} className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-xl border border-slate-200 shadow-sm">
-                  <div className="w-7 h-7 bg-blue-50 rounded-lg flex items-center justify-center">
-                    <Icon className="w-4 h-4 text-blue-600" />
+                <div key={label} className="flex flex-col sm:flex-row items-center sm:items-center gap-1.5 sm:gap-2.5 bg-white px-3 sm:px-4 py-3 rounded-xl border border-slate-200 shadow-sm text-center sm:text-left">
+                  <div className="w-6 h-6 sm:w-7 sm:h-7 bg-blue-50 rounded-lg flex items-center justify-center shrink-0">
+                    <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />
                   </div>
                   <div>
-                    <p className="text-xs font-black text-slate-400 uppercase tracking-widest leading-none">{label}</p>
-                    <p className="text-sm font-black text-slate-800">{value}</p>
+                    <p className="text-[9px] sm:text-xs font-black text-slate-400 uppercase tracking-widest leading-none">{label}</p>
+                    <p className="text-xs sm:text-sm font-black text-slate-800 mt-0.5">{value}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Categories */}
-            <div className="mt-6 flex flex-wrap justify-center lg:justify-start gap-2">
+            <div className="mt-5 flex flex-wrap justify-center lg:justify-start gap-1.5">
               {[
                 { cat: 'CS', n: 50 }, { cat: 'Maths', n: 25 }, { cat: 'Aptitude', n: 25 },
                 { cat: 'English', n: 15 }, { cat: 'GK', n: 5 }
               ].map(({ cat, n }) => (
-                <span key={cat} className="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 shadow-sm">
+                <span key={cat} className="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 shadow-sm">
                   {cat} <span className="text-blue-600">·{n}Q</span>
                 </span>
               ))}

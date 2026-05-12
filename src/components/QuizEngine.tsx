@@ -450,8 +450,41 @@ export default function QuizEngine({ questions, userData, onComplete, onExit }: 
               </motion.div>
             </AnimatePresence>
 
+            {/* Mobile Mini Palette Strip — always visible on mobile */}
+            <div className="lg:hidden mt-3 mb-1">
+              <div className="flex items-center gap-1.5 mb-1.5">
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{activeCategory}</span>
+                <span className="text-[10px] text-slate-300">· {catAnswered(activeCategory)}/{CAT_META[activeCategory].total} answered</span>
+              </div>
+              <div className="overflow-x-auto no-scrollbar">
+                <div className="flex gap-1.5 pb-1">
+                  {questions.map((q, i) => {
+                    if (q.category !== activeCategory) return null;
+                    const status = getStatus(q, i);
+                    const isCurrent = i === currentIdx;
+                    return (
+                      <button
+                        key={q.id}
+                        onClick={() => setCurrentIdx(i)}
+                        className={`flex-shrink-0 w-8 h-8 rounded-lg text-[10px] font-black border-2 flex items-center justify-center transition-all active:scale-90 ${
+                          isCurrent
+                            ? 'bg-white border-blue-600 text-blue-600 shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20'
+                            : status === 'answered'  ? 'bg-emerald-500 border-emerald-500 text-white'
+                            : status === 'skipped'   ? 'bg-red-400 border-red-400 text-white'
+                            : status === 'review'    ? 'bg-amber-500 border-amber-500 text-white'
+                            :                          'bg-white border-slate-200 text-slate-400'
+                        }`}
+                      >
+                        {i + 1}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
             {/* Navigation Bar */}
-            <div className="sticky bottom-0 bg-slate-50/95 backdrop-blur-md pt-3 pb-4 sm:pb-6 mt-3 z-10">
+            <div className="sticky bottom-0 bg-slate-50/95 backdrop-blur-md pt-2 pb-4 sm:pb-6 mt-2 z-10">
               <div className="flex items-center justify-between gap-2">
                 <button
                   disabled={currentIdx === 0}
