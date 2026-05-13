@@ -652,7 +652,7 @@
   {
     "id": "q51",
     "questionNumber": 51,
-    "category": "Math",
+    "category": "Maths",
     "question": "Find the value of x if log2(x)=5:",
     "options": [
       "10",
@@ -665,7 +665,7 @@
   {
     "id": "q52",
     "questionNumber": 52,
-    "category": "Math",
+    "category": "Maths",
     "question": "The common difference of an AP where the first term is 5 and the 10th term is 32 is:",
     "options": [
       "2",
@@ -678,7 +678,7 @@
   {
     "id": "q53",
     "questionNumber": 53,
-    "category": "Math",
+    "category": "Maths",
     "question": "What is the sum of the roots of the quadratic equation x^2-7x+10=0?",
     "options": [
       "7",
@@ -691,7 +691,7 @@
   {
     "id": "q54",
     "questionNumber": 54,
-    "category": "Math",
+    "category": "Maths",
     "question": "How many ways can 3 people be seated in a row of 5 chairs?",
     "options": [
       "15",
@@ -704,7 +704,7 @@
   {
     "id": "q55",
     "questionNumber": 55,
-    "category": "Math",
+    "category": "Maths",
     "question": "The distance between points (1, 2) and (4, 6) is:",
     "options": [
       "3",
@@ -717,7 +717,7 @@
   {
     "id": "q56",
     "questionNumber": 56,
-    "category": "Math",
+    "category": "Maths",
     "question": "The midpoint of the line segment joining (2, -4) and (6, 8) is:",
     "options": [
       "(4, 2)",
@@ -730,7 +730,7 @@
   {
     "id": "q57",
     "questionNumber": 57,
-    "category": "Math",
+    "category": "Maths",
     "question": "If sin θ=3/5 what is the value of cos θ (for acute θ)?",
     "options": [
       "4/5",
@@ -743,7 +743,7 @@
   {
     "id": "q58",
     "questionNumber": 58,
-    "category": "Math",
+    "category": "Maths",
     "question": "The area of a triangle with base 10 cm and height 5 cm is:",
     "options": [
       "50 sq. cm.",
@@ -756,7 +756,7 @@
   {
     "id": "q59",
     "questionNumber": 59,
-    "category": "Math",
+    "category": "Maths",
     "question": "Find the circumference of a circle whose radius is 7 cm (Use π=22/7):",
     "options": [
       "22 cm",
@@ -769,7 +769,7 @@
   {
     "id": "q60",
     "questionNumber": 60,
-    "category": "Math",
+    "category": "Maths",
     "question": "The volume of a cube with side 4 cm is:",
     "options": [
       "16 cubic cm.",
@@ -782,7 +782,7 @@
   {
     "id": "q61",
     "questionNumber": 61,
-    "category": "Math",
+    "category": "Maths",
     "question": "If two fair coins are tossed, the probability of getting at least one head is:",
     "options": [
       "1/4",
@@ -795,7 +795,7 @@
   {
     "id": "q62",
     "questionNumber": 62,
-    "category": "Math",
+    "category": "Maths",
     "question": "The value of tan 45° + cot 45° is:",
     "options": [
       "0",
@@ -808,7 +808,7 @@
   {
     "id": "q63",
     "questionNumber": 63,
-    "category": "Math",
+    "category": "Maths",
     "question": "The slope of the line 2x+y=5 is:",
     "options": [
       "2",
@@ -821,7 +821,7 @@
   {
     "id": "q64",
     "questionNumber": 64,
-    "category": "Math",
+    "category": "Maths",
     "question": "If the diameter of a sphere is 6 cm, its surface area is:",
     "options": [
       "36π",
@@ -834,7 +834,7 @@
   {
     "id": "q65",
     "questionNumber": 65,
-    "category": "Math",
+    "category": "Maths",
     "question": "A bag contains 5 red and 3 blue balls. Probability of drawing a blue ball is:",
     "options": [
       "5/8",
@@ -847,7 +847,7 @@
   {
     "id": "q66",
     "questionNumber": 66,
-    "category": "Math",
+    "category": "Maths",
     "question": "The 5th term of a Geometric Progression (GP) where a=2 and r=3 is:",
     "options": [
       "30",
@@ -860,7 +860,7 @@
   {
     "id": "q67",
     "questionNumber": 67,
-    "category": "Math",
+    "category": "Maths",
     "question": "Expand (x+2)^2:",
     "options": [
       "x^2+4",
@@ -873,7 +873,7 @@
   {
     "id": "q68",
     "questionNumber": 68,
-    "category": "Math",
+    "category": "Maths",
     "question": "If x+y=10 and x-y=2, then the value of x is:",
     "options": [
       "4",
@@ -886,7 +886,7 @@
   {
     "id": "q69",
     "questionNumber": 69,
-    "category": "Math",
+    "category": "Maths",
     "question": "The area of a rectangle is 48 sq. m. If its length is 8 m, its perimeter is:",
     "options": [
       "14 m",
@@ -899,7 +899,7 @@
   {
     "id": "q70",
     "questionNumber": 70,
-    "category": "Math",
+    "category": "Maths",
     "question": "In a right-angled triangle, if the hypotenuse is 13 cm and one side is 5 cm, the third side is:",
     "options": [
       "8 cm",
@@ -912,7 +912,7 @@
   {
     "id": "q71",
     "questionNumber": 71,
-    "category": "Math",
+    "category": "Maths",
     "question": "The value of sin^2 30° + cos^2 30° is:",
     "options": [
       "1/2",
@@ -925,7 +925,7 @@
   {
     "id": "q72",
     "questionNumber": 72,
-    "category": "Math",
+    "category": "Maths",
     "question": "The equation of a circle with center (0,0) and radius 3 is:",
     "options": [
       "x+y=3",
@@ -938,7 +938,7 @@
   {
     "id": "q73",
     "questionNumber": 73,
-    "category": "Math",
+    "category": "Maths",
     "question": "A die is thrown once. The probability of getting an even number is:",
     "options": [
       "1/6",
@@ -951,7 +951,7 @@
   {
     "id": "q74",
     "questionNumber": 74,
-    "category": "Math",
+    "category": "Maths",
     "question": "Simplify: (2^3)^2 * 2^4:",
     "options": [
       "2^9",
@@ -964,7 +964,7 @@
   {
     "id": "q75",
     "questionNumber": 75,
-    "category": "Math",
+    "category": "Maths",
     "question": "The volume of a cylinder with radius 7 cm and height 10 cm is (Use π=22/7):",
     "options": [
       "770 cubic cm.",
