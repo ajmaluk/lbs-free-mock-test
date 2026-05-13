@@ -94,7 +94,7 @@ export default function CourseDetails() {
       {/* Testimonials */}
       <div className="mb-5">
         <h3 className="text-lg font-black text-slate-800 mb-3 flex items-center gap-2">
-          <Star className="w-5 h-5 text-amber-400 fill-amber-400" /> Student Success Stories
+          <Star className="w-5 h-5 text-amber-400 fill-amber-400" /> Student Reviews
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {TESTIMONIALS.map(t => (
