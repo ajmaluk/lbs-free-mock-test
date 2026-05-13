@@ -14,11 +14,11 @@ interface Props { result: TestResult; questions: Question[]; onReset: () => void
 
 /* ─── Video Card ─────────────────────────────────────── */
 const VIDEOS = [
-  { id: 1, title: 'CS Fundamentals: Memory Management', src: '/videos/amarjith.mp4', poster: 'https://images.unsplash.com/photo-1509228463558-ce2ecd3e401b?auto=format&fit=crop&q=80&w=600' },
-  { id: 2, title: 'English Grammar & Rhetoric', src: '/videos/akshay.mp4', poster: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600' },
-  { id: 3, title: 'Mathematics: Coordinate Geometry', src: '/videos/jumna.mp4', poster: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=600' },
-  { id: 4, title: 'GK: Current Affairs', src: '/videos/abhinav.mp4', poster: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=600' },
-  { id: 5, title: 'Aptitude: Percentages', src: '/videos/sourav.mp4', poster: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=600' },
+  { id: 1, title: 'CS Fundamentals: Memory Management', src: '/videos/amarjith.mp4'},
+  { id: 2, title: 'English Grammar & Rhetoric', src: '/videos/akshay.mp4' },
+  { id: 3, title: 'Mathematics: Coordinate Geometry', src: '/videos/jumna.mp4' },
+  { id: 4, title: 'GK: Current Affairs', src: '/videos/abhinav.mp4' },
+  { id: 5, title: 'Aptitude: Percentages', src: '/videos/sourav.mp4' },
 ];
 
 function VideoCard({ video, activeId, setActiveId }: { video: typeof VIDEOS[0]; activeId: number | null; setActiveId: (id: number | null) => void }) {
@@ -47,7 +47,7 @@ function VideoCard({ video, activeId, setActiveId }: { video: typeof VIDEOS[0]; 
   return (
     <div ref={boxRef} className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-all">
       <div className="relative aspect-video bg-slate-900 cursor-pointer" onClick={toggle}>
-        <video ref={ref} src={video.src} poster={video.poster} loop playsInline className="w-full h-full object-cover opacity-90" />
+        <video ref={ref} src={video.src} loop playsInline className="w-full h-full object-cover opacity-90" />
         <div className={`absolute inset-0 bg-black/30 flex items-center justify-center transition-opacity ${playing ? 'opacity-0' : 'opacity-100'}`}>
           <div className="w-11 h-11 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
             {playing ? <Pause className="w-4 h-4 fill-slate-900" /> : <Play className="w-4 h-4 fill-slate-900 ml-0.5" />}
