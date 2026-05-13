@@ -1,126 +1,1562 @@
 [
-  {"id":"q1","questionNumber":1,"category":"CS","question":"Which data structure follows the LIFO (Last In, First Out) principle?","options":["Queue","Stack","Linked List","Deque"],"correctAnswer":1},
-  {"id":"q2","questionNumber":2,"category":"CS","question":"What is the time complexity of binary search on a sorted array?","options":["O(n)","O(n²)","O(log n)","O(n log n)"],"correctAnswer":2},
-  {"id":"q3","questionNumber":3,"category":"CS","question":"Which data structure follows FIFO (First In, First Out) principle?","options":["Queue","Stack","Tree","Graph"],"correctAnswer":0},
-  {"id":"q4","questionNumber":4,"category":"CS","question":"Which of the following is NOT a linear data structure?","options":["Array","Linked List","Stack","Binary Tree"],"correctAnswer":3},
-  {"id":"q5","questionNumber":5,"category":"CS","question":"What sorting algorithm has an average time complexity of O(n log n)?","options":["Bubble Sort","Insertion Sort","Merge Sort","Selection Sort"],"correctAnswer":2},
-  {"id":"q6","questionNumber":6,"category":"CS","question":"What does DNS stand for?","options":["Data Network System","Domain Name System","Digital Node Server","Dynamic Name Service"],"correctAnswer":1},
-  {"id":"q7","questionNumber":7,"category":"CS","question":"What is the default port number for HTTP?","options":["80","443","21","25"],"correctAnswer":0},
-  {"id":"q8","questionNumber":8,"category":"CS","question":"In a relational database, a primary key is used to:","options":["Link two tables","Uniquely identify each record","Encrypt data","Sort records"],"correctAnswer":1},
-  {"id":"q9","questionNumber":9,"category":"CS","question":"How many layers does the OSI model have?","options":["4","5","6","7"],"correctAnswer":3},
-  {"id":"q10","questionNumber":10,"category":"CS","question":"What is recursion in programming?","options":["A loop that runs forever","A function that calls itself","A function with no return","An array of functions"],"correctAnswer":1},
-  {"id":"q11","questionNumber":11,"category":"CS","question":"Which OOP concept refers to bundling data and methods that operate on that data into a single unit?","options":["Encapsulation","Inheritance","Polymorphism","Abstraction"],"correctAnswer":0},
-  {"id":"q12","questionNumber":12,"category":"CS","question":"Which OOP concept allows a class to derive properties and behaviours from another class?","options":["Polymorphism","Abstraction","Inheritance","Encapsulation"],"correctAnswer":2},
-  {"id":"q13","questionNumber":13,"category":"CS","question":"What is polymorphism in OOP?","options":["Multiple classes","Same interface, different implementations","Data hiding","Code repetition"],"correctAnswer":1},
-  {"id":"q14","questionNumber":14,"category":"CS","question":"RAM stands for:","options":["Random Access Memory","Read Access Memory","Remote Application Module","Rapid Access Method"],"correctAnswer":0},
-  {"id":"q15","questionNumber":15,"category":"CS","question":"What is a deadlock in an operating system?","options":["A crash of the OS","Two or more processes waiting indefinitely for each other","A memory overflow","A CPU overload"],"correctAnswer":1},
-  {"id":"q16","questionNumber":16,"category":"CS","question":"What is virtual memory?","options":["Memory on the GPU","An extension of physical memory using disk space","A type of cache","Flash storage"],"correctAnswer":2},
-  {"id":"q17","questionNumber":17,"category":"CS","question":"What does a compiler do?","options":["Translates high-level language to machine code","Runs programs line by line","Manages memory","Handles network requests"],"correctAnswer":0},
-  {"id":"q18","questionNumber":18,"category":"CS","question":"What is cache memory?","options":["Main storage","High-speed memory between CPU and RAM","Backup memory","Virtual memory"],"correctAnswer":1},
-  {"id":"q19","questionNumber":19,"category":"CS","question":"UDP (User Datagram Protocol) is:","options":["Connection-oriented","Connectionless and faster","Slower than TCP","Used only for emails"],"correctAnswer":1},
-  {"id":"q20","questionNumber":20,"category":"CS","question":"Which of these is a NoSQL (non-relational) database?","options":["MySQL","PostgreSQL","Oracle","MongoDB"],"correctAnswer":3},
-  {"id":"q21","questionNumber":21,"category":"CS","question":"What does DBMS stand for?","options":["Database Management System","Data Build Module Suite","Digital Backup Memory Store","Distributed Binary Machine System"],"correctAnswer":0},
-  {"id":"q22","questionNumber":22,"category":"CS","question":"What is database normalization?","options":["Encrypting data","Reducing data redundancy and improving integrity","Compressing files","Sorting records"],"correctAnswer":1},
-  {"id":"q23","questionNumber":23,"category":"CS","question":"What is a foreign key in a relational database?","options":["A key used outside the database","A key that references the primary key of another table","An encrypted key","A key for sorting"],"correctAnswer":1},
-  {"id":"q24","questionNumber":24,"category":"CS","question":"What does ACID stand for in database transactions?","options":["Array, Collection, Index, Data","Atomicity, Consistency, Isolation, Durability","Access, Control, Integrity, Design","Archive, Compile, Import, Deploy"],"correctAnswer":1},
-  {"id":"q25","questionNumber":25,"category":"CS","question":"What is SQL?","options":["System Query Link","Structured Query Language","Standard Query List","Sequential Queue Logic"],"correctAnswer":1},
-  {"id":"q26","questionNumber":26,"category":"CS","question":"What is a semaphore in OS?","options":["A type of memory","A synchronization mechanism","A CPU scheduler","A type of interrupt"],"correctAnswer":1},
-  {"id":"q27","questionNumber":27,"category":"CS","question":"What does a linked list node consist of?","options":["Only data","Data and a pointer to the next node","Only a pointer","An index and value"],"correctAnswer":1},
-  {"id":"q28","questionNumber":28,"category":"CS","question":"What is the decimal equivalent of binary number 1010?","options":["10","8","12","14"],"correctAnswer":0},
-  {"id":"q29","questionNumber":29,"category":"CS","question":"An abstract class in OOP:","options":["Can be instantiated directly","Cannot be instantiated directly","Has no methods","Has only static methods"],"correctAnswer":1},
-  {"id":"q30","questionNumber":30,"category":"CS","question":"An interface in Java:","options":["Is a class","Is a contract defining methods a class must implement","Can have instance variables","Can be instantiated"],"correctAnswer":1},
-  {"id":"q31","questionNumber":31,"category":"CS","question":"What is garbage collection in programming?","options":["Deleting files manually","Automatic memory management, freeing unused objects","A sorting process","Cache clearing"],"correctAnswer":1},
-  {"id":"q32","questionNumber":32,"category":"CS","question":"What is multithreading?","options":["Multiple CPUs","Multiple threads executing concurrently in a single program","Multiple programs running","Multiple files"],"correctAnswer":1},
-  {"id":"q33","questionNumber":33,"category":"CS","question":"What is Dijkstra's algorithm used for?","options":["Sorting elements","Finding the shortest path in a graph","Searching a tree","Hashing"],"correctAnswer":1},
-  {"id":"q34","questionNumber":34,"category":"CS","question":"What is the worst-case time complexity of bubble sort?","options":["O(log n)","O(n log n)","O(n)","O(n²)"],"correctAnswer":3},
-  {"id":"q35","questionNumber":35,"category":"CS","question":"Which protocol is used for sending emails?","options":["FTP","HTTP","SMTP","SNMP"],"correctAnswer":2},
-  {"id":"q36","questionNumber":36,"category":"CS","question":"RAID stands for:","options":["Random Array of Independent Disks","Redundant Array of Independent Disks","Rapid Access Index Disk","Remote Array Interface Data"],"correctAnswer":1},
-  {"id":"q37","questionNumber":37,"category":"CS","question":"IPv6 uses how many bits for addressing?","options":["32","64","128","256"],"correctAnswer":2},
-  {"id":"q38","questionNumber":38,"category":"CS","question":"A subnet mask is used to:","options":["Encrypt IP addresses","Identify the network and host portion of an IP address","Assign IP addresses","Block specific IPs"],"correctAnswer":1},
-  {"id":"q39","questionNumber":39,"category":"CS","question":"A pointer in C/C++ is:","options":["A regular variable","A variable that stores a memory address","A constant value","An array index"],"correctAnswer":1},
-  {"id":"q40","questionNumber":40,"category":"CS","question":"What does API stand for?","options":["Application Programming Interface","Advanced Protocol Integration","Automated Process Index","Application Process Installer"],"correctAnswer":0},
-  {"id":"q41","questionNumber":41,"category":"CS","question":"What is a stack overflow error?","options":["Too much data in a queue","Stack memory is exhausted, usually due to infinite recursion","Hard disk failure","RAM overflow"],"correctAnswer":1},
-  {"id":"q42","questionNumber":42,"category":"CS","question":"The average-case time complexity of Quick Sort is:","options":["O(n)","O(n²)","O(n log n)","O(log n)"],"correctAnswer":2},
-  {"id":"q43","questionNumber":43,"category":"CS","question":"What is a graph in data structures?","options":["A chart","A collection of vertices and edges","A type of array","A linked list variant"],"correctAnswer":1},
-  {"id":"q44","questionNumber":44,"category":"CS","question":"What is a hash table's average search time complexity?","options":["O(n)","O(log n)","O(n²)","O(1)"],"correctAnswer":3},
-  {"id":"q45","questionNumber":45,"category":"CS","question":"What does ROM stand for?","options":["Random Output Memory","Read Only Memory","Remote Operation Module","Rapid Output Media"],"correctAnswer":1},
-  {"id":"q46","questionNumber":46,"category":"CS","question":"Which scheduling algorithm selects the process with smallest burst time first?","options":["FCFS","SJF","Round Robin","Priority"],"correctAnswer":1},
-  {"id":"q47","questionNumber":47,"category":"CS","question":"What is a B-tree?","options":["A binary tree","A balanced search tree that maintains sorted data","A type of heap","A graph variant"],"correctAnswer":1},
-  {"id":"q48","questionNumber":48,"category":"CS","question":"Which of these is not an OOP concept?","options":["Encapsulation","Inheritance","Compilation","Polymorphism"],"correctAnswer":2},
-  {"id":"q49","questionNumber":49,"category":"CS","question":"What is an exception in programming?","options":["A syntax error","A logical error","A runtime error that disrupts normal program flow","A compile-time warning"],"correctAnswer":2},
-  {"id":"q50","questionNumber":50,"category":"CS","question":"Which layer of the OSI model is responsible for routing packets between networks?","options":["Data Link Layer","Transport Layer","Network Layer","Session Layer"],"correctAnswer":2},
-
-  {"id":"q51","questionNumber":51,"category":"Maths","question":"Evaluate: 2 + 3 × 4 using BODMAS rule","options":["20","14","24","10"],"correctAnswer":1},
-  {"id":"q52","questionNumber":52,"category":"Maths","question":"What is the value of sin(90°)?","options":["1","0","−1","∞"],"correctAnswer":0},
-  {"id":"q53","questionNumber":53,"category":"Maths","question":"What is the derivative of x³ with respect to x?","options":["x²","3x²","3x","2x³"],"correctAnswer":1},
-  {"id":"q54","questionNumber":54,"category":"Maths","question":"What is log₂(8)?","options":["2","4","3","6"],"correctAnswer":2},
-  {"id":"q55","questionNumber":55,"category":"Maths","question":"What is √169?","options":["11","12","14","13"],"correctAnswer":3},
-  {"id":"q56","questionNumber":56,"category":"Maths","question":"What is the LCM of 12 and 18?","options":["36","24","72","18"],"correctAnswer":0},
-  {"id":"q57","questionNumber":57,"category":"Maths","question":"What is 5! (5 factorial)?","options":["25","60","120","24"],"correctAnswer":2},
-  {"id":"q58","questionNumber":58,"category":"Maths","question":"Find the area of a circle with radius 7 (use π = 22/7)","options":["44","154","22","308"],"correctAnswer":1},
-  {"id":"q59","questionNumber":59,"category":"Maths","question":"What is the determinant of matrix [[1,2],[3,4]]?","options":["2","10","-2","4"],"correctAnswer":2},
-  {"id":"q60","questionNumber":60,"category":"Maths","question":"What is the probability of getting heads in a fair coin toss?","options":["1/2","1/3","1/4","2/3"],"correctAnswer":0},
-  {"id":"q61","questionNumber":61,"category":"Maths","question":"What is the HCF of 24 and 36?","options":["6","12","9","18"],"correctAnswer":1},
-  {"id":"q62","questionNumber":62,"category":"Maths","question":"What is 15% of 400?","options":["40","50","60","70"],"correctAnswer":2},
-  {"id":"q63","questionNumber":63,"category":"Maths","question":"What is the sum of the first 10 natural numbers?","options":["45","50","55","60"],"correctAnswer":2},
-  {"id":"q64","questionNumber":64,"category":"Maths","question":"What is ∫3x² dx?","options":["x³ + C","6x + C","x³/2 + C","3x³ + C"],"correctAnswer":0},
-  {"id":"q65","questionNumber":65,"category":"Maths","question":"How many prime numbers are there less than 20?","options":["7","8","9","6"],"correctAnswer":1},
-  {"id":"q66","questionNumber":66,"category":"Maths","question":"What is the perimeter of a rectangle with length 8 and breadth 5?","options":["40","13","26","20"],"correctAnswer":2},
-  {"id":"q67","questionNumber":67,"category":"Maths","question":"What is Euler's number 'e' approximately equal to?","options":["2.414","3.141","1.618","2.718"],"correctAnswer":3},
-  {"id":"q68","questionNumber":68,"category":"Maths","question":"What is the formula for combinations nCr?","options":["n!/(r!(n-r)!)","n!/r!","n!/(n-r)!","n×r"],"correctAnswer":0},
-  {"id":"q69","questionNumber":69,"category":"Maths","question":"In a geometric progression, what remains constant between consecutive terms?","options":["Difference","Sum","Ratio","Product"],"correctAnswer":2},
-  {"id":"q70","questionNumber":70,"category":"Maths","question":"A square matrix has a determinant of 0. It is called:","options":["Identity matrix","Scalar matrix","Singular matrix","Diagonal matrix"],"correctAnswer":2},
-  {"id":"q71","questionNumber":71,"category":"Maths","question":"2³ × 2⁴ = ?","options":["2⁷","4⁷","2¹²","8⁷"],"correctAnswer":0},
-  {"id":"q72","questionNumber":72,"category":"Maths","question":"What is the sum of angles in a triangle?","options":["90°","180°","270°","360°"],"correctAnswer":1},
-  {"id":"q73","questionNumber":73,"category":"Maths","question":"What is tan(45°)?","options":["0","1","√3","1/√2"],"correctAnswer":1},
-  {"id":"q74","questionNumber":74,"category":"Maths","question":"What is the value of 0!?","options":["0","Undefined","1","∞"],"correctAnswer":2},
-  {"id":"q75","questionNumber":75,"category":"Maths","question":"If x + y = 10 and x − y = 4, what is the value of x?","options":["3","5","6","7"],"correctAnswer":3},
-
-  {"id":"q76","questionNumber":76,"category":"Aptitude","question":"What is the next number in the series: 2, 4, 8, 16, ?","options":["32","24","18","30"],"correctAnswer":0},
-  {"id":"q77","questionNumber":77,"category":"Aptitude","question":"What is 30% of 600?","options":["120","180","200","160"],"correctAnswer":1},
-  {"id":"q78","questionNumber":78,"category":"Aptitude","question":"Simple Interest on ₹2000 at 5% per annum for 3 years is:","options":["₹100","₹200","₹300","₹400"],"correctAnswer":2},
-  {"id":"q79","questionNumber":79,"category":"Aptitude","question":"A is the father of B. B is the sister of C. C is the mother of D. How is D related to A?","options":["Grandchild","Nephew","Son","Daughter"],"correctAnswer":0},
-  {"id":"q80","questionNumber":80,"category":"Aptitude","question":"A train 150 m long travels at 54 km/h. How long does it take to pass a pole?","options":["8 sec","10 sec","12 sec","15 sec"],"correctAnswer":1},
-  {"id":"q81","questionNumber":81,"category":"Aptitude","question":"A can finish work in 10 days and B in 15 days. Working together, they finish in:","options":["5 days","6 days","8 days","4 days"],"correctAnswer":1},
-  {"id":"q82","questionNumber":82,"category":"Aptitude","question":"A product is bought for ₹500 and sold for ₹600. What is the profit percentage?","options":["10%","15%","20%","25%"],"correctAnswer":2},
-  {"id":"q83","questionNumber":83,"category":"Aptitude","question":"What is the next perfect square in the series: 1, 4, 9, 16, 25, ?","options":["30","36","32","40"],"correctAnswer":1},
-  {"id":"q84","questionNumber":84,"category":"Aptitude","question":"The average of 3, 6, 9, 12, 15 is:","options":["8","9","10","7"],"correctAnswer":1},
-  {"id":"q85","questionNumber":85,"category":"Aptitude","question":"Premise: All roses are flowers. All flowers need water. Conclusion:","options":["All flowers are roses","All roses need water","All water has flowers","None of the above"],"correctAnswer":1},
-  {"id":"q86","questionNumber":86,"category":"Aptitude","question":"10 men can complete a job in 12 days. How many days will 15 men take?","options":["6 days","8 days","10 days","9 days"],"correctAnswer":1},
-  {"id":"q87","questionNumber":87,"category":"Aptitude","question":"What comes next in the letter series: ACE, BDF, CEG, ?","options":["DFH","EGH","DGI","CFH"],"correctAnswer":0},
-  {"id":"q88","questionNumber":88,"category":"Aptitude","question":"If A:B = 3:4 and B:C = 2:3, what is A:C?","options":["1:2","3:8","9:16","2:3"],"correctAnswer":0},
-  {"id":"q89","questionNumber":89,"category":"Aptitude","question":"A shirt is marked at ₹800 with a 25% discount. What is the selling price?","options":["₹500","₹550","₹600","₹700"],"correctAnswer":2},
-  {"id":"q90","questionNumber":90,"category":"Aptitude","question":"Find the odd one out: CAT, DOG, COW, FISH, LION","options":["CAT","FISH","COW","LION"],"correctAnswer":1},
-  {"id":"q91","questionNumber":91,"category":"Aptitude","question":"Three-fourths of a number is 48. What is the number?","options":["36","64","56","72"],"correctAnswer":1},
-  {"id":"q92","questionNumber":92,"category":"Aptitude","question":"In how many ways can 4 students be arranged in a row?","options":["12","16","24","32"],"correctAnswer":2},
-  {"id":"q93","questionNumber":93,"category":"Aptitude","question":"What is the sum of 1 + 2 + 3 + ... + 20?","options":["190","200","210","220"],"correctAnswer":2},
-  {"id":"q94","questionNumber":94,"category":"Aptitude","question":"A man walks 6 km East then 8 km North. His straight-line distance from start is:","options":["10 km","12 km","14 km","11 km"],"correctAnswer":0},
-  {"id":"q95","questionNumber":95,"category":"Aptitude","question":"Which number is divisible by both 4 and 6?","options":["10","14","12","16"],"correctAnswer":2},
-  {"id":"q96","questionNumber":96,"category":"Aptitude","question":"The speed of a boat upstream is 12 km/h and downstream is 18 km/h. Speed of stream is:","options":["3 km/h","4 km/h","5 km/h","6 km/h"],"correctAnswer":0},
-  {"id":"q97","questionNumber":97,"category":"Aptitude","question":"If MANGO is coded as NBOIP, how is APPLE coded?","options":["BQQMF","BQQNF","CRRNG","APPNM"],"correctAnswer":0},
-  {"id":"q98","questionNumber":98,"category":"Aptitude","question":"John is taller than Mike. Mike is taller than Sam. Who is the shortest?","options":["John","Mike","Sam","Cannot be determined"],"correctAnswer":2},
-  {"id":"q99","questionNumber":99,"category":"Aptitude","question":"Compound Interest on ₹1000 at 10% per annum for 2 years is:","options":["₹200","₹210","₹220","₹250"],"correctAnswer":1},
-  {"id":"q100","questionNumber":100,"category":"Aptitude","question":"A clock shows 3:00. What is the angle between the hour and minute hands?","options":["60°","75°","90°","45°"],"correctAnswer":2},
-
-  {"id":"q101","questionNumber":101,"category":"English","question":"Choose the synonym of 'Abundant':","options":["Plentiful","Scarce","Minimal","Rare"],"correctAnswer":0},
-  {"id":"q102","questionNumber":102,"category":"English","question":"Choose the antonym of 'Brave':","options":["Bold","Fearless","Coward","Strong"],"correctAnswer":2},
-  {"id":"q103","questionNumber":103,"category":"English","question":"Fill in the blank: She _____ to school every day.","options":["go","goes","going","gone"],"correctAnswer":1},
-  {"id":"q104","questionNumber":104,"category":"English","question":"Which is the correct passive voice of 'He writes a letter'?","options":["A letter is written by him","A letter was written by him","A letter has been written","He is writing a letter"],"correctAnswer":0},
-  {"id":"q105","questionNumber":105,"category":"English","question":"What is the one-word substitute for 'unable to read or write'?","options":["Dumb","Illiterate","Mute","Ignorant"],"correctAnswer":1},
-  {"id":"q106","questionNumber":106,"category":"English","question":"What is the plural of 'child'?","options":["Childs","Childes","Children","Childrens"],"correctAnswer":2},
-  {"id":"q107","questionNumber":107,"category":"English","question":"Which of the following is a conjunction?","options":["Quickly","Beautiful","And","Runs"],"correctAnswer":2},
-  {"id":"q108","questionNumber":108,"category":"English","question":"Choose the antonym of 'Transparent':","options":["Opaque","Clear","Visible","Bright"],"correctAnswer":0},
-  {"id":"q109","questionNumber":109,"category":"English","question":"Choose the synonym of 'Diligent':","options":["Lazy","Hardworking","Careless","Slow"],"correctAnswer":1},
-  {"id":"q110","questionNumber":110,"category":"English","question":"What does the word 'Ephemeral' mean?","options":["Eternal","Massive","Bright","Short-lived"],"correctAnswer":3},
-  {"id":"q111","questionNumber":111,"category":"English","question":"Which word is NOT a noun?","options":["Beautiful","Table","Courage","Freedom"],"correctAnswer":0},
-  {"id":"q112","questionNumber":112,"category":"English","question":"Fill in the blank: I _____ here since 2010.","options":["am living","was living","have been living","will be living"],"correctAnswer":2},
-  {"id":"q113","questionNumber":113,"category":"English","question":"Choose the correctly spelled word:","options":["Necessery","Neccessary","Necessary","Necesary"],"correctAnswer":2},
-  {"id":"q114","questionNumber":114,"category":"English","question":"Identify the error: 'She don't know the answer.'","options":["She","don't","know","answer"],"correctAnswer":1},
-  {"id":"q115","questionNumber":115,"category":"English","question":"Which sentence uses the correct article?","options":["She is a honest woman","She is an honest woman","She is the honest woman","She is honest woman"],"correctAnswer":1},
-
-  {"id":"q116","questionNumber":116,"category":"GK","question":"Who is known as the Father of the Indian Constitution?","options":["B.R. Ambedkar","Jawaharlal Nehru","Mahatma Gandhi","Sardar Patel"],"correctAnswer":0},
-  {"id":"q117","questionNumber":117,"category":"GK","question":"What is the national bird of India?","options":["Sparrow","Peacock","Parrot","Eagle"],"correctAnswer":1},
-  {"id":"q118","questionNumber":118,"category":"GK","question":"What was the name of the world's first computer virus?","options":["Melissa","ILOVEYOU","Creeper","Morris"],"correctAnswer":2},
-  {"id":"q119","questionNumber":119,"category":"GK","question":"WHO stands for:","options":["World Heritage Organization","World Health Organization","World Humanitarian Office","World Housing Organization"],"correctAnswer":1},
-  {"id":"q120","questionNumber":120,"category":"GK","question":"How many Fundamental Rights are guaranteed by the Indian Constitution?","options":["5","6","7","8"],"correctAnswer":1}
+  {
+    "id": "q1",
+    "questionNumber": 1,
+    "category": "CS",
+    "question": "Which data structure follows LIFO?",
+    "options": [
+      "Queue",
+      "Stack",
+      "Tree",
+      "List"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q2",
+    "questionNumber": 2,
+    "category": "CS",
+    "question": "Insertion in a stack is called:",
+    "options": [
+      "pop",
+      "push",
+      "peek",
+      "insert"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q3",
+    "questionNumber": 3,
+    "category": "CS",
+    "question": "Deletion in a stack is called:",
+    "options": [
+      "push",
+      "pop",
+      "peek",
+      "remove"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q4",
+    "questionNumber": 4,
+    "category": "CS",
+    "question": "A dynamic data structure:",
+    "options": [
+      "stack",
+      "queue",
+      "linked list",
+      "array"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q5",
+    "questionNumber": 5,
+    "category": "CS",
+    "question": "A data structure that stores elements in contiguous memory locations:",
+    "options": [
+      "stack",
+      "array",
+      "queue",
+      "linked list"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q6",
+    "questionNumber": 6,
+    "category": "CS",
+    "question": "Which data structure is used in BFS traversal?",
+    "options": [
+      "Stack",
+      "Queue",
+      "Tree",
+      "Graph"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q7",
+    "questionNumber": 7,
+    "category": "CS",
+    "question": "Which data structure is used in DFS traversal?",
+    "options": [
+      "Queue",
+      "Stack",
+      "Array",
+      "Linked list"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q8",
+    "questionNumber": 8,
+    "category": "CS",
+    "question": "Inorder traversal of a Binary Search Tree gives data in:",
+    "options": [
+      "random order",
+      "descending order",
+      "ascending order",
+      "level order"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q9",
+    "questionNumber": 9,
+    "category": "CS",
+    "question": "A binary tree has a maximum of children.",
+    "options": [
+      "1",
+      "0",
+      "2",
+      "3"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q10",
+    "questionNumber": 10,
+    "category": "CS",
+    "question": "Worst case Time Complexity of bubble sort:",
+    "options": [
+      "O(n^2)",
+      "O(log n)",
+      "O(n log n)",
+      "O(n-1)"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q11",
+    "questionNumber": 11,
+    "category": "CS",
+    "question": "Best case Time Complexity of optimized bubble sort:",
+    "options": [
+      "O(n^2)",
+      "O(n log n)",
+      "O(n)",
+      "O(log n)"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q12",
+    "questionNumber": 12,
+    "category": "CS",
+    "question": "Which of the following is used for solving the 8-queens problem?",
+    "options": [
+      "Backtracking",
+      "Divide and conquer",
+      "Greedy Algorithm",
+      "Dynamic programming"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q13",
+    "questionNumber": 13,
+    "category": "CS",
+    "question": "In notation, operators are written before their operands.",
+    "options": [
+      "postfix",
+      "prefix",
+      "infix",
+      "inorder"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q14",
+    "questionNumber": 14,
+    "category": "CS",
+    "question": "For palindrome testing, which data structure is used?",
+    "options": [
+      "Heap",
+      "Tree",
+      "Priority queue",
+      "Stack"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q15",
+    "questionNumber": 15,
+    "category": "CS",
+    "question": "A group of 4 bits is called:",
+    "options": [
+      "Nibble",
+      "Word",
+      "Byte",
+      "Quad"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q16",
+    "questionNumber": 16,
+    "category": "CS",
+    "question": "A nibble consists of:",
+    "options": [
+      "4 bits",
+      "8 bits",
+      "16 bits",
+      "32 bits"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q17",
+    "questionNumber": 17,
+    "category": "CS",
+    "question": "Binary equivalent of decimal 25 is:",
+    "options": [
+      "11101",
+      "11001",
+      "10011",
+      "11111"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q18",
+    "questionNumber": 18,
+    "category": "CS",
+    "question": "2's Complement of 100002 is:",
+    "options": [
+      "10000",
+      "01111",
+      "11000",
+      "01000"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q19",
+    "questionNumber": 19,
+    "category": "CS",
+    "question": "Binary equivalent of decimal number 9 is:",
+    "options": [
+      "1000",
+      "1001",
+      "1010",
+      "1110"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q20",
+    "questionNumber": 20,
+    "category": "CS",
+    "question": "Output of XOR gate when both inputs are 1:",
+    "options": [
+      "0",
+      "1",
+      "2",
+      "Undefined"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q21",
+    "questionNumber": 21,
+    "category": "CS",
+    "question": "A universal gate is:",
+    "options": [
+      "OR gate",
+      "AND gate",
+      "NAND gate",
+      "None of these"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q22",
+    "questionNumber": 22,
+    "category": "CS",
+    "question": "Which among the following is an example of a sequential circuit?",
+    "options": [
+      "Decoder",
+      "Adder",
+      "Encoder",
+      "Shift register"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q23",
+    "questionNumber": 23,
+    "category": "CS",
+    "question": "Gate which is used to reverse the output from 0 to 1 and vice versa:",
+    "options": [
+      "NAND",
+      "NOR",
+      "NOT",
+      "EXOR"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q24",
+    "questionNumber": 24,
+    "category": "CS",
+    "question": "The flip-flop known as a basic latch:",
+    "options": [
+      "SR",
+      "JK",
+      "T",
+      "D"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q25",
+    "questionNumber": 25,
+    "category": "CS",
+    "question": "RAM is a memory.",
+    "options": [
+      "static",
+      "volatile",
+      "nonvolatile",
+      "slow"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q26",
+    "questionNumber": 26,
+    "category": "CS",
+    "question": "Cache memory lies between:",
+    "options": [
+      "CPU and ROM",
+      "CPU and RAM",
+      "RAM and ROM",
+      "CPU and secondary storage"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q27",
+    "questionNumber": 27,
+    "category": "CS",
+    "question": "SDRAM stands for:",
+    "options": [
+      "Standard dynamic random access memory",
+      "Synchronous dynamic random access memory",
+      "Synchronous digital random access memory",
+      "Synchronous dynamic random approach memory"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q28",
+    "questionNumber": 28,
+    "category": "CS",
+    "question": "NTFS stands for:",
+    "options": [
+      "New Technology File System",
+      "Novel Technology File System",
+      "New Type File System",
+      "New Technology File Service"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q29",
+    "questionNumber": 29,
+    "category": "CS",
+    "question": "Light weight process is called:",
+    "options": [
+      "Thread",
+      "Process",
+      "Fork",
+      "Micro process"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q30",
+    "questionNumber": 30,
+    "category": "CS",
+    "question": "Which of the following is NOT a function of an Operating System?",
+    "options": [
+      "Memory management",
+      "Processor scheduling",
+      "File management",
+      "Transaction management"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q31",
+    "questionNumber": 31,
+    "category": "CS",
+    "question": "The Translation Lookaside Buffer (TLB) is most related to:",
+    "options": [
+      "Disk Scheduling",
+      "CPU Scheduling",
+      "Interrupt Vector Table",
+      "Page Table"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q32",
+    "questionNumber": 32,
+    "category": "CS",
+    "question": "Compaction is a technique for:",
+    "options": [
+      "Combining all free memory fragments into one block",
+      "Removing corrupted sectors",
+      "Increasing CPU speed",
+      "None of these"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q33",
+    "questionNumber": 33,
+    "category": "CS",
+    "question": "External fragmentation can be solved by:",
+    "options": [
+      "Compaction",
+      "Fragmentation",
+      "Spooling",
+      "Thrashing"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q34",
+    "questionNumber": 34,
+    "category": "CS",
+    "question": "A primary partition is required to:",
+    "options": [
+      "Store and boot an OS",
+      "Hold secondary data",
+      "Archive files",
+      "None of these"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q35",
+    "questionNumber": 35,
+    "category": "CS",
+    "question": "The virtual memory system uses to record the mapping between logical and physical addresses.",
+    "options": [
+      "Page Table",
+      "Physical memory system",
+      "FAT",
+      "NTFS"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q36",
+    "questionNumber": 36,
+    "category": "CS",
+    "question": "A variable name in C programming cannot start with:",
+    "options": [
+      "underscore",
+      "number",
+      "small letter alphabet",
+      "capital letter alphabet"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q37",
+    "questionNumber": 37,
+    "category": "CS",
+    "question": "Which escape sequence is a carriage return?",
+    "options": [
+      "\\r",
+      "\\n",
+      "\\a",
+      "\\c"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q38",
+    "questionNumber": 38,
+    "category": "CS",
+    "question": "Which is not an ideal structured programming statement?",
+    "options": [
+      "Do-while",
+      "Goto",
+      "If-then-else",
+      "Switch"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q39",
+    "questionNumber": 39,
+    "category": "CS",
+    "question": "A class with at least one pure virtual function is called:",
+    "options": [
+      "inherited class",
+      "base class",
+      "abstract class",
+      "reference class"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q40",
+    "questionNumber": 40,
+    "category": "CS",
+    "question": "Run-time polymorphism in C++ is achieved using:",
+    "options": [
+      "Inheritance",
+      "Virtual functions",
+      "Templates",
+      "Inheritance and Virtual functions"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q41",
+    "questionNumber": 41,
+    "category": "CS",
+    "question": "Which is NOT a feature of OOP?",
+    "options": [
+      "Code reusability",
+      "Duplicate/Redundant data",
+      "Modularity",
+      "Efficient code"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q42",
+    "questionNumber": 42,
+    "category": "CS",
+    "question": "Base and derived class relationship is which pillar of OOPs?",
+    "options": [
+      "Polymorphism",
+      "Encapsulation",
+      "Inheritance",
+      "Abstraction"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q43",
+    "questionNumber": 43,
+    "category": "CS",
+    "question": "Which of the following best defines a class?",
+    "options": [
+      "Parent of an object",
+      "Instance of an object",
+      "Blueprint of an object",
+      "Scope of an object"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q44",
+    "questionNumber": 44,
+    "category": "CS",
+    "question": "Transitive dependence is handled in which normalization form?",
+    "options": [
+      "1NF",
+      "2NF",
+      "3NF",
+      "4NF"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q45",
+    "questionNumber": 45,
+    "category": "CS",
+    "question": "ROLLBACK in a database is a statement.",
+    "options": [
+      "DDL",
+      "DML",
+      "DCL",
+      "TCL"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q46",
+    "questionNumber": 46,
+    "category": "CS",
+    "question": "Total participation of an entity in ER Diagram is represented by:",
+    "options": [
+      "Dashed Ellipses",
+      "Double Lines",
+      "Lines",
+      "Dashed Lines"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q47",
+    "questionNumber": 47,
+    "category": "CS",
+    "question": "Which is an example of derived attribute?",
+    "options": [
+      "age",
+      "email id",
+      "gender",
+      "first name"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q48",
+    "questionNumber": 48,
+    "category": "CS",
+    "question": "What does ACID stand for in DBMS?",
+    "options": [
+      "Atomicity, Consistency, Isolation, Durability",
+      "Add, Check, Integrate, Drop",
+      "Access, Commit, Integrate, Data",
+      "Access, Check, Integrate, Data"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q49",
+    "questionNumber": 49,
+    "category": "CS",
+    "question": "The first computer virus is:",
+    "options": [
+      "Sasser",
+      "Creeper",
+      "Blaster",
+      "Trojan"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q50",
+    "questionNumber": 50,
+    "category": "CS",
+    "question": "VIRUS stands for:",
+    "options": [
+      "Very Intelligent Result Until Source",
+      "Vital Information Resource Under Seize",
+      "Viral Important Record User Searched",
+      "Very Interchanged Resource Under Search"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q51",
+    "questionNumber": 51,
+    "category": "Math",
+    "question": "Find the value of x if log2(x)=5:",
+    "options": [
+      "10",
+      "25",
+      "32",
+      "64"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q52",
+    "questionNumber": 52,
+    "category": "Math",
+    "question": "The common difference of an AP where the first term is 5 and the 10th term is 32 is:",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q53",
+    "questionNumber": 53,
+    "category": "Math",
+    "question": "What is the sum of the roots of the quadratic equation x^2-7x+10=0?",
+    "options": [
+      "7",
+      "10",
+      "-7",
+      "5"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q54",
+    "questionNumber": 54,
+    "category": "Math",
+    "question": "How many ways can 3 people be seated in a row of 5 chairs?",
+    "options": [
+      "15",
+      "20",
+      "60",
+      "120"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q55",
+    "questionNumber": 55,
+    "category": "Math",
+    "question": "The distance between points (1, 2) and (4, 6) is:",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "7"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q56",
+    "questionNumber": 56,
+    "category": "Math",
+    "question": "The midpoint of the line segment joining (2, -4) and (6, 8) is:",
+    "options": [
+      "(4, 2)",
+      "(4, 4)",
+      "(2, 4)",
+      "(8, 4)"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q57",
+    "questionNumber": 57,
+    "category": "Math",
+    "question": "If sin θ=3/5 what is the value of cos θ (for acute θ)?",
+    "options": [
+      "4/5",
+      "3/4",
+      "5/4",
+      "1/2"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q58",
+    "questionNumber": 58,
+    "category": "Math",
+    "question": "The area of a triangle with base 10 cm and height 5 cm is:",
+    "options": [
+      "50 sq. cm.",
+      "25 sq. cm.",
+      "15 sq. cm.",
+      "100 sq. cm."
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q59",
+    "questionNumber": 59,
+    "category": "Math",
+    "question": "Find the circumference of a circle whose radius is 7 cm (Use π=22/7):",
+    "options": [
+      "22 cm",
+      "44 cm",
+      "154 cm",
+      "88 cm"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q60",
+    "questionNumber": 60,
+    "category": "Math",
+    "question": "The volume of a cube with side 4 cm is:",
+    "options": [
+      "16 cubic cm.",
+      "32 cubic cm.",
+      "64 cubic cm.",
+      "96 cubic cm."
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q61",
+    "questionNumber": 61,
+    "category": "Math",
+    "question": "If two fair coins are tossed, the probability of getting at least one head is:",
+    "options": [
+      "1/4",
+      "1/2",
+      "3/4",
+      "1"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q62",
+    "questionNumber": 62,
+    "category": "Math",
+    "question": "The value of tan 45° + cot 45° is:",
+    "options": [
+      "0",
+      "1",
+      "2",
+      "sqrt(2)"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q63",
+    "questionNumber": 63,
+    "category": "Math",
+    "question": "The slope of the line 2x+y=5 is:",
+    "options": [
+      "2",
+      "-2",
+      "1/2",
+      "5"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q64",
+    "questionNumber": 64,
+    "category": "Math",
+    "question": "If the diameter of a sphere is 6 cm, its surface area is:",
+    "options": [
+      "36π",
+      "18π",
+      "144π",
+      "9π"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q65",
+    "questionNumber": 65,
+    "category": "Math",
+    "question": "A bag contains 5 red and 3 blue balls. Probability of drawing a blue ball is:",
+    "options": [
+      "5/8",
+      "3/8",
+      "3/5",
+      "1/2"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q66",
+    "questionNumber": 66,
+    "category": "Math",
+    "question": "The 5th term of a Geometric Progression (GP) where a=2 and r=3 is:",
+    "options": [
+      "30",
+      "162",
+      "54",
+      "486"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q67",
+    "questionNumber": 67,
+    "category": "Math",
+    "question": "Expand (x+2)^2:",
+    "options": [
+      "x^2+4",
+      "x^2+2x+4",
+      "x^2+4x+4",
+      "x^2+4x+2"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q68",
+    "questionNumber": 68,
+    "category": "Math",
+    "question": "If x+y=10 and x-y=2, then the value of x is:",
+    "options": [
+      "4",
+      "5",
+      "6",
+      "8"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q69",
+    "questionNumber": 69,
+    "category": "Math",
+    "question": "The area of a rectangle is 48 sq. m. If its length is 8 m, its perimeter is:",
+    "options": [
+      "14 m",
+      "28 m",
+      "24 m",
+      "32 m"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q70",
+    "questionNumber": 70,
+    "category": "Math",
+    "question": "In a right-angled triangle, if the hypotenuse is 13 cm and one side is 5 cm, the third side is:",
+    "options": [
+      "8 cm",
+      "10 cm",
+      "12 cm",
+      "15 cm"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q71",
+    "questionNumber": 71,
+    "category": "Math",
+    "question": "The value of sin^2 30° + cos^2 30° is:",
+    "options": [
+      "1/2",
+      "1",
+      "0",
+      "sqrt(3)/2"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q72",
+    "questionNumber": 72,
+    "category": "Math",
+    "question": "The equation of a circle with center (0,0) and radius 3 is:",
+    "options": [
+      "x+y=3",
+      "x^2+y^2=3",
+      "x^2+y^2=9",
+      "2x+2y=9"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q73",
+    "questionNumber": 73,
+    "category": "Math",
+    "question": "A die is thrown once. The probability of getting an even number is:",
+    "options": [
+      "1/6",
+      "1/3",
+      "1/2",
+      "2/3"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q74",
+    "questionNumber": 74,
+    "category": "Math",
+    "question": "Simplify: (2^3)^2 * 2^4:",
+    "options": [
+      "2^9",
+      "2^10",
+      "2^24",
+      "2^7"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q75",
+    "questionNumber": 75,
+    "category": "Math",
+    "question": "The volume of a cylinder with radius 7 cm and height 10 cm is (Use π=22/7):",
+    "options": [
+      "770 cubic cm.",
+      "1540 cubic cm.",
+      "440 cubic cm.",
+      "154 cubic cm."
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q76",
+    "questionNumber": 76,
+    "category": "Aptitude",
+    "question": "A and B finish work in 5 days. A at 2x speed, B at half speed finish in 4 days. A alone takes:",
+    "options": [
+      "10",
+      "12",
+      "15",
+      "18"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q77",
+    "questionNumber": 77,
+    "category": "Aptitude",
+    "question": "A finishes work in 10 days, B in 15 days. Together they take:",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q78",
+    "questionNumber": 78,
+    "category": "Aptitude",
+    "question": "Train at 36 km/h crosses a telephone post in 25 seconds. Length of train:",
+    "options": [
+      "200 m",
+      "225 m",
+      "250 m",
+      "320 m"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q79",
+    "questionNumber": 79,
+    "category": "Aptitude",
+    "question": "Man goes to office at 33 km/h, returns at 22 km/h, total 5 hours. Distance:",
+    "options": [
+      "33 km",
+      "44 km",
+      "55 km",
+      "66 km"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q80",
+    "questionNumber": 80,
+    "category": "Aptitude",
+    "question": "Out of 150 students, 72 failed English, 62 Maths, 34 both. Number passed:",
+    "options": [
+      "50",
+      "40",
+      "45",
+      "55"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q81",
+    "questionNumber": 81,
+    "category": "Aptitude",
+    "question": "10% discount, still 10% gain. Marked price Rs.1,540. Cost price:",
+    "options": [
+      "Rs.1,210",
+      "Rs.1,240",
+      "Rs.1,260",
+      "Rs.1,280"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q82",
+    "questionNumber": 82,
+    "category": "Aptitude",
+    "question": "A+B salary = Rs.20,000. A spends 95%, B spends 85%, savings equal. A's salary:",
+    "options": [
+      "Rs.5,000",
+      "Rs.10,000",
+      "Rs.12,000",
+      "Rs.15,000"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q83",
+    "questionNumber": 83,
+    "category": "Aptitude",
+    "question": "P and Q income ratio 5:4, expenses 3:2. P saves Rs.6000, Q saves Rs.5000. P's income:",
+    "options": [
+      "Rs.7,500",
+      "Rs.7,000",
+      "Rs.6,500",
+      "Rs.8,000"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q84",
+    "questionNumber": 84,
+    "category": "Aptitude",
+    "question": "Order of 38000 units. 1000/day produced, 5% defective. Days to complete:",
+    "options": [
+      "39",
+      "38",
+      "40",
+      "44"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q85",
+    "questionNumber": 85,
+    "category": "Aptitude",
+    "question": "Class 8AM-12noon. 5 equal periods, 5-min rest after each. Duration per period:",
+    "options": [
+      "44 min",
+      "46 min",
+      "43 min",
+      "45 min"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q86",
+    "questionNumber": 86,
+    "category": "Aptitude",
+    "question": "P runs faster than Q, R runs slower than S, S runs slower than Q. Slowest runner:",
+    "options": [
+      "P",
+      "Q",
+      "R",
+      "S"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q87",
+    "questionNumber": 87,
+    "category": "Aptitude",
+    "question": "12km N, 15km E, 15km W, 18km S. Distance from starting point:",
+    "options": [
+      "6 km",
+      "12 km",
+      "33 km",
+      "60 km"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q88",
+    "questionNumber": 88,
+    "category": "Aptitude",
+    "question": "3rd day of month is Friday. 5th day from 21st of that month:",
+    "options": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Saturday"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q89",
+    "questionNumber": 89,
+    "category": "Aptitude",
+    "question": "PRICE coded as SVNIL. Code for COST:",
+    "options": [
+      "FSXY",
+      "FSWY",
+      "FTWZ",
+      "FSXZ"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q90",
+    "questionNumber": 90,
+    "category": "Aptitude",
+    "question": "A person travels 12 km North, 15 km East, after that 15 km West, then 18 km South. How far from start?",
+    "options": [
+      "6 km",
+      "10 km",
+      "8 km",
+      "4 km"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q91",
+    "questionNumber": 91,
+    "category": "Aptitude",
+    "question": "How many ways can 5 books A, B, C, D, E be arranged so that A and B are always together?",
+    "options": [
+      "24",
+      "36",
+      "48",
+      "48"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q92",
+    "questionNumber": 92,
+    "category": "Aptitude",
+    "question": "Three-digit even numbers using 1,2,3,4,6 (repetition allowed):",
+    "options": [
+      "75",
+      "60",
+      "48",
+      "30"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q93",
+    "questionNumber": 93,
+    "category": "Aptitude",
+    "question": "A reduction of 25% in price of rice enables buying 5 kg more for Rs.480. Original price per kg:",
+    "options": [
+      "Rs.32",
+      "Rs.40",
+      "Rs.35",
+      "Rs.30"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q94",
+    "questionNumber": 94,
+    "category": "Aptitude",
+    "question": "An article sold at 8% gain yields Rs.16 more than at 8% loss. Cost price:",
+    "options": [
+      "Rs.264",
+      "Rs.116",
+      "Rs.84",
+      "Rs.100"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q95",
+    "questionNumber": 95,
+    "category": "Aptitude",
+    "question": "The sum of ages of 5 family members 3 years ago was 100. Average remains same after adopting a baby. How old is the baby?",
+    "options": [
+      "3 years",
+      "5 years",
+      "2 years",
+      "None of these"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q96",
+    "questionNumber": 96,
+    "category": "Aptitude",
+    "question": "In how many ways can letters of MANAGEMENT be arranged so vowels always come together?",
+    "options": [
+      "7560",
+      "113400",
+      "1260",
+      "1440"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q97",
+    "questionNumber": 97,
+    "category": "Aptitude",
+    "question": "Karl Pearson's coefficient of correlation range:",
+    "options": [
+      "[0,+∞)",
+      "(-∞,+∞)",
+      "[0,1]",
+      "[-1,1]"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q98",
+    "questionNumber": 98,
+    "category": "Aptitude",
+    "question": "Class has 15 boys, 10 girls. 3 selected at random. P(1 girl and 2 boys):",
+    "options": [
+      "25/56",
+      "25/117",
+      "21/46",
+      "3/25"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q99",
+    "questionNumber": 99,
+    "category": "Aptitude",
+    "question": "Cumulative frequency curve can determine:",
+    "options": [
+      "median",
+      "deciles",
+      "percentiles",
+      "All the above"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q100",
+    "questionNumber": 100,
+    "category": "Aptitude",
+    "question": "X~Poisson (1), Y~Poisson (2), independent. E(X|X+Y=10):",
+    "options": [
+      "20",
+      "10",
+      "10/3",
+      "20/3"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q101",
+    "questionNumber": 101,
+    "category": "English",
+    "question": "Identify the wrongly spelt word:",
+    "options": [
+      "playwright",
+      "accommodate",
+      "wiered",
+      "supersede"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q102",
+    "questionNumber": 102,
+    "category": "English",
+    "question": "Word nearly opposite in meaning to LAX:",
+    "options": [
+      "luxurious",
+      "loose",
+      "clear",
+      "strict"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q103",
+    "questionNumber": 103,
+    "category": "English",
+    "question": "'At arm's length' means:",
+    "options": [
+      "pay attention to",
+      "be sympathetic to",
+      "take care of",
+      "at a distance"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q104",
+    "questionNumber": 104,
+    "category": "English",
+    "question": "Word nearest in meaning to 'integrate':",
+    "options": [
+      "Segregate",
+      "Separate",
+      "Demarcate",
+      "Merge"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q105",
+    "questionNumber": 105,
+    "category": "English",
+    "question": "Complete: 'You closed the door, _____?'",
+    "options": [
+      "did you",
+      "didn't you",
+      "isn't it",
+      "aren't you"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q106",
+    "questionNumber": 106,
+    "category": "English",
+    "question": "Which is the correct sentence?",
+    "options": [
+      "It was raining...",
+      "It has been raining since 10 o'clock this morning.",
+      "It is being rained...",
+      "It is raining..."
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q107",
+    "questionNumber": 107,
+    "category": "English",
+    "question": "The Private Secretary _____ the Minister of the situation.",
+    "options": [
+      "warned",
+      "appraised",
+      "apprised",
+      "explained"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q108",
+    "questionNumber": 108,
+    "category": "English",
+    "question": "The court asked the pleader _____.",
+    "options": [
+      "what the authorities had been doing",
+      "what had the authorities been doing",
+      "what the authorities have been doing",
+      "what have the authorities been doing"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q109",
+    "questionNumber": 109,
+    "category": "English",
+    "question": "'Beat Plastic Pollution' is the theme of:",
+    "options": [
+      "World Maritime Day",
+      "World Environment Day",
+      "World Habitat Day",
+      "International Day for Disaster Reduction"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q110",
+    "questionNumber": 110,
+    "category": "English",
+    "question": "Choose the odd pair:",
+    "options": [
+      "Bacterium-Bacteria",
+      "Syllabus-Syllabi",
+      "Maidservant-Maidservants",
+      "Crisis-Crisises"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q111",
+    "questionNumber": 111,
+    "category": "English",
+    "question": "Which is the word nearest in meaning to 'judicious'?",
+    "options": [
+      "Discreet",
+      "Shrewd",
+      "Fatuous",
+      "Cautious"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q112",
+    "questionNumber": 112,
+    "category": "English",
+    "question": "He complained that his request was turned _____.",
+    "options": [
+      "away",
+      "down",
+      "up",
+      "out"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q113",
+    "questionNumber": 113,
+    "category": "English",
+    "question": "Complete: 'None of the participants arrived in time, _____?'",
+    "options": [
+      "didn't they",
+      "did they",
+      "don't they",
+      "do they"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q114",
+    "questionNumber": 114,
+    "category": "English",
+    "question": "Choose the correctly spelled word:",
+    "options": [
+      "Pnemonia",
+      "Nuemonia",
+      "Pniumonia",
+      "Pneumonia"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": "q115",
+    "questionNumber": 115,
+    "category": "English",
+    "question": "'If you had informed me earlier, I _____' ",
+    "options": [
+      "would help you",
+      "will have helped",
+      "would have helped you",
+      "will help you"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q116",
+    "questionNumber": 116,
+    "category": "GK",
+    "question": "Kanha Tiger Reserve is in which state?",
+    "options": [
+      "Uttar Pradesh",
+      "West Bengal",
+      "Madhya Pradesh",
+      "Karnataka"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q117",
+    "questionNumber": 117,
+    "category": "GK",
+    "question": "Alveoli are related to which organ?",
+    "options": [
+      "Brain",
+      "Lungs",
+      "Liver",
+      "Kidney"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": "q118",
+    "questionNumber": 118,
+    "category": "GK",
+    "question": "First fully solar-powered airport in the world:",
+    "options": [
+      "Cochin International Airport",
+      "Indira Gandhi International Airport",
+      "Mangalore International Airport",
+      "Trivandrum International Airport"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": "q119",
+    "questionNumber": 119,
+    "category": "GK",
+    "question": "The 'Fourth Estate' refers to:",
+    "options": [
+      "Judiciary",
+      "Parliament",
+      "Press",
+      "Bureaucrats"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": "q120",
+    "questionNumber": 120,
+    "category": "GK",
+    "question": "Gerontology is the study of:",
+    "options": [
+      "Process of ageing",
+      "Growth of plant cells",
+      "Insects",
+      "Birds"
+    ],
+    "correctAnswer": 0
+  }
 ]
