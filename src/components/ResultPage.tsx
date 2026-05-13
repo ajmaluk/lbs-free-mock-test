@@ -16,7 +16,7 @@ interface Props { result: TestResult; questions: Question[]; onReset: () => void
 const VIDEOS = [
   { id: 1, title: 'CS Fundamentals: Memory Management', src: '/videos/amarjith.mp4'},
   { id: 2, title: 'English Grammar & Rhetoric', src: '/videos/akshay.mp4' },
-  { id: 3, title: 'Mathematics: Coordinate Geometry', src: '/videos/jumna.mp4' },
+  { id: 3, title: 'Mathematics: Conic Sections', src: '/videos/jumna.mp4' },
   { id: 4, title: 'GK: Current Affairs', src: '/videos/abhinav.mp4' },
   { id: 5, title: 'Aptitude: Percentages', src: '/videos/sourav.mp4' },
 ];
@@ -38,16 +38,25 @@ function VideoCard({ video, activeId, setActiveId }: { video: typeof VIDEOS[0]; 
 
   useEffect(() => {
     if (!ref.current) return;
-    if (activeId === video.id) { ref.current.play().then(() => setPlaying(true)).catch(() => {}); }
+    if (activeId === video.id) { ref.current.play().then(() => setPlaying(true)).catch(() => setPlaying(false)); }
     else { ref.current.pause(); setPlaying(false); }
   }, [activeId, video.id]);
 
-  const toggle = () => playing ? setActiveId(null) : setActiveId(video.id);
+  const toggle = () => {
+    if (playing) {
+      setActiveId(null);
+    } else {
+      setActiveId(video.id);
+      if (ref.current) {
+        ref.current.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
+      }
+    }
+  };
 
   return (
     <div ref={boxRef} className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-all">
       <div className="relative aspect-video bg-slate-900 cursor-pointer" onClick={toggle}>
-        <video ref={ref} src={video.src} loop playsInline className="w-full h-full object-cover opacity-90" />
+        <video ref={ref} src={video.src} loop playsInline preload="metadata" className="w-full h-full object-cover opacity-90" />
         <div className={`absolute inset-0 bg-black/30 flex items-center justify-center transition-opacity ${playing ? 'opacity-0' : 'opacity-100'}`}>
           <div className="w-11 h-11 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
             {playing ? <Pause className="w-4 h-4 fill-slate-900" /> : <Play className="w-4 h-4 fill-slate-900 ml-0.5" />}
