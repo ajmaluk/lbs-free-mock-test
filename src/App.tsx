@@ -96,7 +96,7 @@ function App() {
 
         {appState === 'result' && result && (
           <motion.div key="result" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full">
-            <ResultPage result={result} questions={questions} onReset={handleReset} />
+            <ResultPage result={result} questions={questions} />
           </motion.div>
         )}
       </AnimatePresence>

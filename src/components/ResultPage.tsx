@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import type { TestResult, Question, Category } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  AlertCircle, RefreshCw, ArrowRight, Play, Pause,
+  AlertCircle, ArrowRight, Play, Pause,
   Check, X, Minus, Clock, TrendingUp,
   MessageCircle, CheckCircle2
 } from 'lucide-react';
@@ -10,7 +10,7 @@ import CoursePromoBanner from './result/CoursePromoBanner';
 import RankPrediction from './result/RankPrediction';
 import CourseDetails from './result/CourseDetails';
 
-interface Props { result: TestResult; questions: Question[]; onReset: () => void; }
+interface Props { result: TestResult; questions: Question[]; }
 
 /* ─── Video Card ─────────────────────────────────────── */
 const VIDEOS = [
@@ -75,7 +75,7 @@ function VideoCard({ video, activeId, setActiveId }: { video: typeof VIDEOS[0]; 
 }
 
 /* ─── Exit Confirm Modal ─────────────────────────────── */
-function ExitModal({ onConfirm, onCancel }: { onConfirm: () => void; onCancel: () => void }) {
+function ExitModal({ onCancel }: { onCancel: () => void }) {
   return (
     <div className="fixed inset-0 z-[300] flex items-center justify-center p-4">
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -125,7 +125,7 @@ function AnimCounter({ to, duration = 1.5 }: { to: number; duration?: number }) 
 }
 
 /* ─── Main Result Page ───────────────────────────────── */
-export default function ResultPage({ result, questions, onReset }: Props) {
+export default function ResultPage({ result, questions }: Props) {
   const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
   const [showExitModal, setShowExitModal] = useState(false);
 
@@ -169,7 +169,7 @@ export default function ResultPage({ result, questions, onReset }: Props) {
 
       {/* Exit Modal */}
       <AnimatePresence>
-        {showExitModal && <ExitModal onConfirm={onReset} onCancel={() => setShowExitModal(false)} />}
+        {showExitModal && <ExitModal onCancel={() => setShowExitModal(false)} />}
       </AnimatePresence>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 md:py-8">
