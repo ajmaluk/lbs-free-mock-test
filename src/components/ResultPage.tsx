@@ -96,10 +96,10 @@ function ExitModal({ onConfirm, onCancel }: { onConfirm: () => void; onCancel: (
               className="w-full py-3 bg-blue-600 text-white rounded-2xl font-black text-sm hover:bg-blue-700 transition-all flex items-center justify-center gap-2">
               View Crash Course <ArrowRight className="w-4 h-4" />
             </a>
-            <button onClick={onConfirm}
+            {/* <button onClick={onConfirm}
               className="w-full py-3 bg-slate-100 text-slate-500 rounded-2xl font-black text-sm hover:bg-slate-200 transition-all">
               No thanks, retake test
-            </button>
+            </button> */}
           </div>
         </div>
       </motion.div>
@@ -162,7 +162,7 @@ export default function ResultPage({ result, questions, onReset }: Props) {
     : accuracy >= 35 ? { label: 'Average', color: 'orange' }
     : { label: 'Needs Work', color: 'red' };
 
-  const handleRetake = () => setShowExitModal(true);
+  // const handleRetake = () => setShowExitModal(true);
 
   return (
     <div className="min-h-screen bg-slate-50 pb-28 font-['Inter']">
@@ -361,9 +361,9 @@ export default function ResultPage({ result, questions, onReset }: Props) {
           <p className="text-white text-xs font-black tracking-wide">🔥 Limited Seats — CET MCA 2027 Crash Course — Only ₹350!</p>
         </div>
         <div className="max-w-5xl mx-auto px-4 py-2.5 flex flex-wrap justify-center gap-2.5">
-          <button onClick={handleRetake} className="flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 border-slate-200 bg-white text-slate-600 font-black text-sm hover:bg-slate-50 transition-all">
+          {/* <button onClick={handleRetake} className="flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 border-slate-200 bg-white text-slate-600 font-black text-sm hover:bg-slate-50 transition-all">
             <RefreshCw className="w-4 h-4" /> Retake
-          </button>
+          </button> */}
           <a href="https://wa.me/919400834007" target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 text-white font-black text-sm hover:bg-emerald-600 transition-all shadow-md shadow-emerald-500/20">
             <MessageCircle className="w-4 h-4" /> WhatsApp
