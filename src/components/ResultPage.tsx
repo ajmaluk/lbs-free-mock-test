@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import type { TestResult, Question, Category } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  AlertCircle, RefreshCw, ArrowRight, Play, Pause,
+  AlertCircle, ArrowRight, Play, Pause,
   Check, X, Minus, Clock, TrendingUp,
   MessageCircle, CheckCircle2
 } from 'lucide-react';
@@ -10,7 +10,7 @@ import CoursePromoBanner from './result/CoursePromoBanner';
 import RankPrediction from './result/RankPrediction';
 import CourseDetails from './result/CourseDetails';
 
-interface Props { result: TestResult; questions: Question[]; onReset: () => void; }
+interface Props { result: TestResult; questions: Question[]; }
 
 /* ─── Video Card ─────────────────────────────────────── */
 const VIDEOS = [
@@ -75,7 +75,7 @@ function VideoCard({ video, activeId, setActiveId }: { video: typeof VIDEOS[0]; 
 }
 
 /* ─── Exit Confirm Modal ─────────────────────────────── */
-function ExitModal({ onConfirm, onCancel }: { onConfirm: () => void; onCancel: () => void }) {
+function ExitModal({ onCancel }: { onCancel: () => void }) {
   return (
     <div className="fixed inset-0 z-[300] flex items-center justify-center p-4">
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -96,10 +96,10 @@ function ExitModal({ onConfirm, onCancel }: { onConfirm: () => void; onCancel: (
               className="w-full py-3 bg-blue-600 text-white rounded-2xl font-black text-sm hover:bg-blue-700 transition-all flex items-center justify-center gap-2">
               View Crash Course <ArrowRight className="w-4 h-4" />
             </a>
-            <button onClick={onConfirm}
+            {/* <button onClick={onConfirm}
               className="w-full py-3 bg-slate-100 text-slate-500 rounded-2xl font-black text-sm hover:bg-slate-200 transition-all">
               No thanks, retake test
-            </button>
+            </button> */}
           </div>
         </div>
       </motion.div>
@@ -125,7 +125,7 @@ function AnimCounter({ to, duration = 1.5 }: { to: number; duration?: number }) 
 }
 
 /* ─── Main Result Page ───────────────────────────────── */
-export default function ResultPage({ result, questions, onReset }: Props) {
+export default function ResultPage({ result, questions }: Props) {
   const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
   const [showExitModal, setShowExitModal] = useState(false);
 
@@ -162,14 +162,14 @@ export default function ResultPage({ result, questions, onReset }: Props) {
     : accuracy >= 35 ? { label: 'Average', color: 'orange' }
     : { label: 'Needs Work', color: 'red' };
 
-  const handleRetake = () => setShowExitModal(true);
+  // const handleRetake = () => setShowExitModal(true);
 
   return (
     <div className="min-h-screen bg-slate-50 pb-28 font-['Inter']">
 
       {/* Exit Modal */}
       <AnimatePresence>
-        {showExitModal && <ExitModal onConfirm={onReset} onCancel={() => setShowExitModal(false)} />}
+        {showExitModal && <ExitModal onCancel={() => setShowExitModal(false)} />}
       </AnimatePresence>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 md:py-8">
@@ -361,9 +361,9 @@ export default function ResultPage({ result, questions, onReset }: Props) {
           <p className="text-white text-xs font-black tracking-wide">🔥 Limited Seats — CET MCA 2027 Crash Course — Only ₹350!</p>
         </div>
         <div className="max-w-5xl mx-auto px-4 py-2.5 flex flex-wrap justify-center gap-2.5">
-          <button onClick={handleRetake} className="flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 border-slate-200 bg-white text-slate-600 font-black text-sm hover:bg-slate-50 transition-all">
+          {/* <button onClick={handleRetake} className="flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 border-slate-200 bg-white text-slate-600 font-black text-sm hover:bg-slate-50 transition-all">
             <RefreshCw className="w-4 h-4" /> Retake
-          </button>
+          </button> */}
           <a href="https://wa.me/919400834007" target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 text-white font-black text-sm hover:bg-emerald-600 transition-all shadow-md shadow-emerald-500/20">
             <MessageCircle className="w-4 h-4" /> WhatsApp
