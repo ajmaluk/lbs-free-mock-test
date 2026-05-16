@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lbsmcafreemock.cetmca.in/sitemap.xml
+Host: lbsmcafreemock.cetmca.in

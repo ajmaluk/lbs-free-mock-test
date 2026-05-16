@@ -13,6 +13,21 @@ export default function LandingPage({ onStart, totalQuestions }: Props) {
   const [phone, setPhone] = useState('');
   const [phoneError, setPhoneError] = useState('');
 
+  const highlights = [
+    {
+      title: 'Free LBS MCA practice',
+      text: 'Take a free mock test built for CET Trivandrum aspirants preparing for the LBS MCA entrance exam.',
+    },
+    {
+      title: 'Instant score analysis',
+      text: 'See total score, accuracy, and category-wise performance immediately after submission.',
+    },
+    {
+      title: 'Five subject coverage',
+      text: 'Practice Computer Science, Maths, Aptitude, English, and GK in one structured exam.',
+    },
+  ];
+
   const validatePhone = (val: string) => {
     setPhone(val);
     if (val.length > 0 && !/^\d+$/.test(val)) {
@@ -116,6 +131,27 @@ export default function LandingPage({ onStart, totalQuestions }: Props) {
                 </span>
               ))}
             </div>
+
+            <section className="mt-7 rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-cyan-50 p-5 sm:p-6 shadow-sm" aria-labelledby="mock-test-highlights">
+              <div className="flex flex-col gap-2 mb-4">
+                <p className="text-[11px] font-black text-blue-600 uppercase tracking-[0.2em]">SEO and study highlights</p>
+                <h2 id="mock-test-highlights" className="text-lg sm:text-xl font-black text-slate-900 tracking-tight">
+                  Why this LBS MCA mock test is useful
+                </h2>
+                <p className="text-sm text-slate-600 font-medium leading-relaxed max-w-2xl">
+                  This free mock test helps LBS MCA aspirants practice under exam conditions, improve speed, and review subject-wise weaknesses before the final exam.
+                </p>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-3">
+                {highlights.map(({ title, text }) => (
+                  <article key={title} className="rounded-2xl bg-white/90 border border-slate-200 p-4 shadow-sm">
+                    <h3 className="text-sm font-black text-slate-900 mb-1.5">{title}</h3>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{text}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
           </motion.div>
 
           {/* Right: Registration Form */}

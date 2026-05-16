@@ -1,12 +1,42 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import LandingPage from './components/LandingPage';
-import QuizEngine from './components/QuizEngine';
-import ResultPage from './components/ResultPage';
 import type { UserData, TestResult, Question } from './types';
 import { AnimatePresence, motion } from 'framer-motion';
 import { GraduationCap, AlertCircle, RefreshCw } from 'lucide-react';
 
+const QuizEngine = lazy(() => import('./components/QuizEngine'));
+const ResultPage = lazy(() => import('./components/ResultPage'));
+
 type AppState = 'landing' | 'quiz' | 'result';
+
+const SITE_URL = 'https://lbsmcafreemock.cetmca.in/';
+
+const META_BY_STATE: Record<AppState, { title: string; description: string }> = {
+  landing: {
+    title: 'Free LBS MCA Mock Test 2026 | CET Trivandrum',
+    description: 'Practice the free LBS MCA Mock Test 2026 by CET Trivandrum with 120 questions, a 120-minute timer, instant scoring, and category-wise analytics.',
+  },
+  quiz: {
+    title: 'LBS MCA Mock Test In Progress | CET Trivandrum',
+    description: 'Continue the free LBS MCA mock test and complete 120 questions across CS, Maths, Aptitude, English, and GK.',
+  },
+  result: {
+    title: 'LBS MCA Mock Test Result | CET Trivandrum',
+    description: 'Review your LBS MCA mock test score, subject-wise analytics, accuracy, and performance insights.',
+  },
+};
+
+function upsertMeta(selector: string, attributes: Record<string, string>) {
+  let element = document.head.querySelector(selector);
+  if (!element) {
+    element = document.createElement(attributes.href ? 'link' : 'meta');
+    document.head.appendChild(element);
+  }
+
+  Object.entries(attributes).forEach(([key, value]) => {
+    element.setAttribute(key, value);
+  });
+}
 
 function App() {
   // --- Question Data ---
@@ -39,6 +69,20 @@ function App() {
   useEffect(() => { if (userData) localStorage.setItem('lbs_mock_user', JSON.stringify(userData)); }, [userData]);
   useEffect(() => { if (result) localStorage.setItem('lbs_mock_result', JSON.stringify(result)); }, [result]);
 
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+
+    const meta = META_BY_STATE[appState];
+    document.title = meta.title;
+    upsertMeta('meta[name="description"]', { name: 'description', content: meta.description });
+    upsertMeta('meta[property="og:title"]', { property: 'og:title', content: meta.title });
+    upsertMeta('meta[property="og:description"]', { property: 'og:description', content: meta.description });
+    upsertMeta('meta[property="og:url"]', { property: 'og:url', content: SITE_URL });
+    upsertMeta('meta[name="twitter:title"]', { name: 'twitter:title', content: meta.title });
+    upsertMeta('meta[name="twitter:description"]', { name: 'twitter:description', content: meta.description });
+    upsertMeta('link[rel="canonical"]', { rel: 'canonical', href: SITE_URL });
+  }, [appState]);
+
   const handleStart = (data: UserData) => { setUserData(data); setAppState('quiz'); };
   const handleComplete = (res: TestResult) => {
     setResult(res);
@@ -46,6 +90,16 @@ function App() {
     ['lbs_quiz_answers', 'lbs_quiz_current_idx', 'lbs_quiz_time', 'lbs_quiz_marked'].forEach(k => localStorage.removeItem(k));
   };
   const handleReset = () => { localStorage.clear(); window.location.reload(); };
+
+  const renderLoadingPanel = (message: string) => (
+    <div className="min-h-[60vh] flex items-center justify-center px-6 py-16">
+      <div className="text-center bg-white rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 px-8 py-10 max-w-sm w-full">
+        <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-5" />
+        <p className="text-slate-700 font-bold text-lg">{message}</p>
+        <p className="text-slate-500 text-sm mt-2">Optimizing the initial page load.</p>
+      </div>
+    </div>
+  );
 
   // Loading screen
   if (loadingState === 'loading') {
@@ -90,13 +144,17 @@ function App() {
 
         {appState === 'quiz' && userData && questions.length > 0 && (
           <motion.div key="quiz" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full">
-            <QuizEngine questions={questions} userData={userData} onComplete={handleComplete} onExit={handleReset} />
+            <Suspense fallback={renderLoadingPanel('Loading the quiz experience...')}>
+              <QuizEngine questions={questions} userData={userData} onComplete={handleComplete} onExit={handleReset} />
+            </Suspense>
           </motion.div>
         )}
 
         {appState === 'result' && result && (
           <motion.div key="result" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full">
-            <ResultPage result={result} questions={questions} />
+            <Suspense fallback={renderLoadingPanel('Loading your result...')}>
+              <ResultPage result={result} questions={questions} />
+            </Suspense>
           </motion.div>
         )}
       </AnimatePresence>

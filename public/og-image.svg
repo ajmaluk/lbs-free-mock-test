@@ -1,0 +1,41 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">LBS MCA Mock Test 2026</title>
+  <desc id="desc">Free LBS MCA mock test by CET Trivandrum with 120 questions and instant analytics.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A" />
+      <stop offset="0.55" stop-color="#1D4ED8" />
+      <stop offset="1" stop-color="#38BDF8" />
+    </linearGradient>
+    <linearGradient id="shine" x1="180" y1="120" x2="1020" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white" stop-opacity="0.18" />
+      <stop offset="1" stop-color="white" stop-opacity="0.02" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="48" fill="url(#bg)" />
+  <circle cx="1020" cy="120" r="170" fill="white" fill-opacity="0.1" />
+  <circle cx="150" cy="520" r="190" fill="white" fill-opacity="0.08" />
+  <rect x="80" y="80" width="1040" height="470" rx="36" fill="url(#shine)" stroke="white" stroke-opacity="0.18" />
+
+  <text x="120" y="185" fill="white" font-size="34" font-family="Inter, Arial, sans-serif" font-weight="700" letter-spacing="0.2em">FREE MOCK TEST 2026</text>
+  <text x="120" y="275" fill="white" font-size="72" font-family="Inter, Arial, sans-serif" font-weight="900">LBS MCA Mock Test</text>
+  <text x="120" y="342" fill="#DBEAFE" font-size="34" font-family="Inter, Arial, sans-serif" font-weight="600">CET Trivandrum aspirants • 120 questions • 120 minutes</text>
+
+  <g transform="translate(120 410)">
+    <rect width="240" height="82" rx="22" fill="white" fill-opacity="0.14" stroke="white" stroke-opacity="0.22" />
+    <text x="28" y="36" fill="white" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="700">Instant results</text>
+    <text x="28" y="62" fill="#E0F2FE" font-size="16" font-family="Inter, Arial, sans-serif">Category-wise analytics</text>
+  </g>
+
+  <g transform="translate(388 410)">
+    <rect width="240" height="82" rx="22" fill="white" fill-opacity="0.14" stroke="white" stroke-opacity="0.22" />
+    <text x="28" y="36" fill="white" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="700">5 subject areas</text>
+    <text x="28" y="62" fill="#E0F2FE" font-size="16" font-family="Inter, Arial, sans-serif">CS, Maths, Aptitude, English, GK</text>
+  </g>
+
+  <g transform="translate(656 410)">
+    <rect width="240" height="82" rx="22" fill="white" fill-opacity="0.14" stroke="white" stroke-opacity="0.22" />
+    <text x="28" y="36" fill="white" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="700">Free practice</text>
+    <text x="28" y="62" fill="#E0F2FE" font-size="16" font-family="Inter, Arial, sans-serif">Built for better rank prep</text>
+  </g>
+</svg>
