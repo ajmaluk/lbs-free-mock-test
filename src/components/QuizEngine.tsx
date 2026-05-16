@@ -23,6 +23,19 @@ const CAT_META: Record<Category, { total: number; color: string }> = {
 };
 const CATEGORIES: Category[] = ['CS', 'Maths', 'Aptitude', 'English', 'GK'];
 
+interface QuestionNavigatorProps {
+  questions: Question[];
+  activeCategory: Category;
+  answeredCount: number;
+  currentIdx: number;
+  answers: Record<string, number>;
+  markedForReview: string[];
+  catAnswered: (cat: Category) => number;
+  onCategoryJump: (cat: Category) => void;
+  onQuestionSelect: (index: number) => void;
+  onFinalize: () => void;
+}
+
 function calculateScore(questions: Question[], answers: Record<string, number>) {
   const categoryScores: Record<Category, number> = { CS: 0, Maths: 0, Aptitude: 0, English: 0, GK: 0 };
   const categoryTotals: Record<Category, number> = { CS: 50, Maths: 25, Aptitude: 25, English: 15, GK: 5 };
@@ -34,6 +47,106 @@ function calculateScore(questions: Question[], answers: Record<string, number>) 
     }
   });
   return { totalScore, categoryScores, categoryTotals };
+}
+
+function QuestionNavigator({
+  questions,
+  activeCategory,
+  answeredCount,
+  currentIdx,
+  answers,
+  markedForReview,
+  catAnswered,
+  onCategoryJump,
+  onQuestionSelect,
+  onFinalize,
+}: QuestionNavigatorProps) {
+  const getStatus = (q: Question, idx: number, markedForReview: string[], answers: Record<string, number>) => {
+    if (markedForReview.includes(q.id)) return 'review';
+    if (answers[q.id] !== undefined) return 'answered';
+    if (idx < currentIdx) return 'skipped';
+    return 'unattempted';
+  };
+
+  return (
+    <div className="flex flex-col h-full">
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Navigator</h3>
+        <div className="bg-blue-50 px-2.5 py-1 rounded-lg text-[10px] font-black text-blue-600 border border-blue-100">
+          {answeredCount}/{questions.length}
+        </div>
+      </div>
+
+      {/* Legend */}
+      <div className="flex flex-wrap gap-1.5 mb-4">
+        {[
+          { label: 'Answered', color: 'bg-emerald-500' },
+          { label: 'Skipped', color: 'bg-red-400' },
+          { label: 'Review', color: 'bg-amber-500' },
+          { label: 'Unvisited', color: 'bg-slate-200' },
+        ].map(item => (
+          <div key={item.label} className="flex items-center gap-1 px-2 py-1 bg-slate-50 rounded-md border border-slate-100">
+            <div className={`w-1.5 h-1.5 rounded-full ${item.color}`} />
+            <span className="text-[9px] font-black text-slate-500 uppercase tracking-tight">{item.label}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Category tabs */}
+      <div className="flex gap-1 flex-wrap mb-3">
+        {CATEGORIES.map(cat => (
+          <button
+            key={cat}
+            onClick={() => onCategoryJump(cat)}
+            className={`px-2.5 py-1 rounded-lg text-[10px] font-black transition-all border ${
+              activeCategory === cat
+                ? 'bg-blue-600 text-white border-blue-600'
+                : 'bg-slate-50 text-slate-500 border-slate-100 hover:border-slate-300'
+            }`}
+          >
+            {cat} <span className="opacity-70">{catAnswered(cat)}/{CAT_META[cat].total}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Grid */}
+      <div className="overflow-y-auto flex-1 pr-1 no-scrollbar">
+        <div className="grid grid-cols-5 gap-1.5">
+          {questions.map((q, i) => {
+            if (q.category !== activeCategory) return null;
+            const status = getStatus(q, i, markedForReview, answers);
+            const isCurrent = i === currentIdx;
+            return (
+              <button
+                key={q.id}
+                onClick={() => onQuestionSelect(i)}
+                className={`h-9 rounded-lg text-[11px] font-black border transition-all active:scale-90 flex items-center justify-center ${
+                  status === 'answered' ? 'bg-emerald-500 border-emerald-500 text-white' :
+                  status === 'skipped'  ? 'bg-red-400 border-red-400 text-white' :
+                  status === 'review'    ? 'bg-amber-500 border-amber-500 text-white' :
+                                           'bg-slate-50 border-slate-200 text-slate-400'
+                } ${isCurrent ? '!ring-2 !ring-blue-600 !border-blue-600 !text-blue-600 !bg-white' : ''}`}
+              >
+                {i + 1}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Finalize */}
+      <div className="pt-4 mt-4 border-t border-slate-100">
+        <button
+          onClick={onFinalize}
+          id="finalize-test-btn"
+          className="w-full py-3.5 bg-slate-900 text-white rounded-2xl font-black text-sm hover:bg-black transition-all shadow-xl shadow-slate-900/20 flex items-center justify-center gap-2 group"
+        >
+          FINALIZE TEST
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default function QuizEngine({ questions, userData, onComplete, onExit }: Props) {
@@ -85,7 +198,12 @@ export default function QuizEngine({ questions, userData, onComplete, onExit }: 
   }, [isSubmitting, questions, answers, userData, markedForReview, timeLeft, onComplete]);
 
   useEffect(() => {
-    if (timeLeft <= 0) { handleFinalSubmit(); return; }
+    if (timeLeft <= 0) {
+      const timeout = window.setTimeout(() => {
+        void handleFinalSubmit();
+      }, 0);
+      return () => window.clearTimeout(timeout);
+    }
     const t = setInterval(() => setTimeLeft(p => p - 1), 1000);
     return () => clearInterval(t);
   }, [timeLeft, handleFinalSubmit]);
@@ -150,87 +268,6 @@ export default function QuizEngine({ questions, userData, onComplete, onExit }: 
   const answeredCount = Object.keys(answers).length;
   const catAnswered = (cat: Category) =>
     questions.filter(q => q.category === cat && answers[q.id] !== undefined).length;
-
-  // Question Navigator Panel (shared between sidebar and mobile drawer)
-  const QuestionNavigator = () => (
-    <div className="flex flex-col h-full">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest">Navigator</h3>
-        <div className="bg-blue-50 px-2.5 py-1 rounded-lg text-[10px] font-black text-blue-600 border border-blue-100">
-          {answeredCount}/{questions.length}
-        </div>
-      </div>
-
-      {/* Legend */}
-      <div className="flex flex-wrap gap-1.5 mb-4">
-        {[
-          { label: 'Answered', color: 'bg-emerald-500' },
-          { label: 'Skipped', color: 'bg-red-400' },
-          { label: 'Review', color: 'bg-amber-500' },
-          { label: 'Unvisited', color: 'bg-slate-200' },
-        ].map(item => (
-          <div key={item.label} className="flex items-center gap-1 px-2 py-1 bg-slate-50 rounded-md border border-slate-100">
-            <div className={`w-1.5 h-1.5 rounded-full ${item.color}`} />
-            <span className="text-[9px] font-black text-slate-500 uppercase tracking-tight">{item.label}</span>
-          </div>
-        ))}
-      </div>
-
-      {/* Category tabs */}
-      <div className="flex gap-1 flex-wrap mb-3">
-        {CATEGORIES.map(cat => (
-          <button
-            key={cat}
-            onClick={() => handleCategoryJump(cat)}
-            className={`px-2.5 py-1 rounded-lg text-[10px] font-black transition-all border ${
-              activeCategory === cat
-                ? 'bg-blue-600 text-white border-blue-600'
-                : 'bg-slate-50 text-slate-500 border-slate-100 hover:border-slate-300'
-            }`}
-          >
-            {cat} <span className="opacity-70">{catAnswered(cat)}/{CAT_META[cat].total}</span>
-          </button>
-        ))}
-      </div>
-
-      {/* Grid */}
-      <div className="overflow-y-auto flex-1 pr-1 no-scrollbar">
-        <div className="grid grid-cols-5 gap-1.5">
-          {questions.map((q, i) => {
-            if (q.category !== activeCategory) return null;
-            const status = getStatus(q, i);
-            const isCurrent = i === currentIdx;
-            return (
-              <button
-                key={q.id}
-                onClick={() => { setCurrentIdx(i); setShowMobileNav(false); }}
-                className={`h-9 rounded-lg text-[11px] font-black border transition-all active:scale-90 flex items-center justify-center ${
-                  status === 'answered' ? 'bg-emerald-500 border-emerald-500 text-white' :
-                  status === 'skipped'  ? 'bg-red-400 border-red-400 text-white' :
-                  status === 'review'   ? 'bg-amber-500 border-amber-500 text-white' :
-                                          'bg-slate-50 border-slate-200 text-slate-400'
-                } ${isCurrent ? '!ring-2 !ring-blue-600 !border-blue-600 !text-blue-600 !bg-white' : ''}`}
-              >
-                {i + 1}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Finalize */}
-      <div className="pt-4 mt-4 border-t border-slate-100">
-        <button
-          onClick={() => setShowConfirmSubmit(true)}
-          id="finalize-test-btn"
-          className="w-full py-3.5 bg-slate-900 text-white rounded-2xl font-black text-sm hover:bg-black transition-all shadow-xl shadow-slate-900/20 flex items-center justify-center gap-2 group"
-        >
-          FINALIZE TEST
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </button>
-      </div>
-    </div>
-  );
 
   if (!currentQuestion) return null;
 
@@ -305,7 +342,18 @@ export default function QuizEngine({ questions, userData, onComplete, onExit }: 
                 </button>
               </div>
               <div className="flex-1 overflow-y-auto">
-                <QuestionNavigator />
+                <QuestionNavigator
+                  questions={questions}
+                  activeCategory={activeCategory}
+                  answeredCount={answeredCount}
+                  currentIdx={currentIdx}
+                  answers={answers}
+                  markedForReview={markedForReview}
+                  catAnswered={catAnswered}
+                  onCategoryJump={handleCategoryJump}
+                  onQuestionSelect={index => { setCurrentIdx(index); setShowMobileNav(false); }}
+                  onFinalize={() => setShowConfirmSubmit(true)}
+                />
               </div>
             </motion.div>
           </div>
@@ -536,7 +584,18 @@ export default function QuizEngine({ questions, userData, onComplete, onExit }: 
 
         {/* Desktop Sidebar */}
         <aside className="hidden lg:flex flex-col bg-white border-l border-slate-200 px-5 py-5 overflow-y-auto">
-          <QuestionNavigator />
+          <QuestionNavigator
+            questions={questions}
+            activeCategory={activeCategory}
+            answeredCount={answeredCount}
+            currentIdx={currentIdx}
+            answers={answers}
+            markedForReview={markedForReview}
+            catAnswered={catAnswered}
+            onCategoryJump={handleCategoryJump}
+            onQuestionSelect={index => setCurrentIdx(index)}
+            onFinalize={() => setShowConfirmSubmit(true)}
+          />
         </aside>
       </div>
     </div>

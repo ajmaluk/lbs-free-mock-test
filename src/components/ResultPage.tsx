@@ -24,7 +24,7 @@ const VIDEOS = [
 function VideoCard({ video, activeId, setActiveId }: { video: typeof VIDEOS[0]; activeId: number | null; setActiveId: (id: number | null) => void }) {
   const ref = useRef<HTMLVideoElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
-  const [playing, setPlaying] = useState(false);
+  const playing = activeId === video.id;
 
   useEffect(() => {
     if (window.innerWidth >= 1024) return;
@@ -38,8 +38,11 @@ function VideoCard({ video, activeId, setActiveId }: { video: typeof VIDEOS[0]; 
 
   useEffect(() => {
     if (!ref.current) return;
-    if (activeId === video.id) { ref.current.play().then(() => setPlaying(true)).catch(() => setPlaying(false)); }
-    else { ref.current.pause(); setPlaying(false); }
+    if (activeId === video.id) {
+      ref.current.play().catch(() => undefined);
+    } else {
+      ref.current.pause();
+    }
   }, [activeId, video.id]);
 
   const toggle = () => {
@@ -47,9 +50,6 @@ function VideoCard({ video, activeId, setActiveId }: { video: typeof VIDEOS[0]; 
       setActiveId(null);
     } else {
       setActiveId(video.id);
-      if (ref.current) {
-        ref.current.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
-      }
     }
   };
 

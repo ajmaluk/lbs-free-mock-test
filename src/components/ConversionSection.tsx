@@ -6,7 +6,14 @@ interface Props {
   weakCategory: Category;
 }
 
-const courseData: Record<string, any> = {
+type CourseInfo = {
+  title: string;
+  description: string;
+  benefits: string[];
+  videoPlaceholder: string;
+};
+
+const courseData: Record<Category, CourseInfo> = {
   'Maths': {
     title: 'Advanced Mathematics Mastery',
     description: 'Transform your mathematical intuition. Our proprietary framework helps you solve complex problems in half the time.',

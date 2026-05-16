@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import LandingPage from './components/LandingPage';
-import QuizEngine from './components/QuizEngine';
-import ResultPage from './components/ResultPage';
 import type { UserData, TestResult, Question } from './types';
 import { AnimatePresence, motion } from 'framer-motion';
 import { GraduationCap, AlertCircle, RefreshCw } from 'lucide-react';
+
+const QuizEngine = lazy(() => import('./components/QuizEngine'));
+const ResultPage = lazy(() => import('./components/ResultPage'));
 
 type AppState = 'landing' | 'quiz' | 'result';
 
@@ -90,6 +91,16 @@ function App() {
   };
   const handleReset = () => { localStorage.clear(); window.location.reload(); };
 
+  const renderLoadingPanel = (message: string) => (
+    <div className="min-h-[60vh] flex items-center justify-center px-6 py-16">
+      <div className="text-center bg-white rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 px-8 py-10 max-w-sm w-full">
+        <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-5" />
+        <p className="text-slate-700 font-bold text-lg">{message}</p>
+        <p className="text-slate-500 text-sm mt-2">Optimizing the initial page load.</p>
+      </div>
+    </div>
+  );
+
   // Loading screen
   if (loadingState === 'loading') {
     return (
@@ -133,13 +144,17 @@ function App() {
 
         {appState === 'quiz' && userData && questions.length > 0 && (
           <motion.div key="quiz" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full">
-            <QuizEngine questions={questions} userData={userData} onComplete={handleComplete} onExit={handleReset} />
+            <Suspense fallback={renderLoadingPanel('Loading the quiz experience...')}>
+              <QuizEngine questions={questions} userData={userData} onComplete={handleComplete} onExit={handleReset} />
+            </Suspense>
           </motion.div>
         )}
 
         {appState === 'result' && result && (
           <motion.div key="result" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full">
-            <ResultPage result={result} questions={questions} />
+            <Suspense fallback={renderLoadingPanel('Loading your result...')}>
+              <ResultPage result={result} questions={questions} />
+            </Suspense>
           </motion.div>
         )}
       </AnimatePresence>
